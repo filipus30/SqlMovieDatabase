@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sqlmoviedatabase.gui;
+package sqlmoviedatabase.gui.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -11,16 +11,16 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 
 /**
+ * FXML Controller class
  *
- * @author filip
+ * @author PC
  */
 public class PrimaryController implements Initializable {
-    
+
     @FXML
-    private Button moveMovies;
+    private Button btn_moveMovies;
     @FXML
     private Button btn_addCategory;
     @FXML
@@ -38,10 +38,13 @@ public class PrimaryController implements Initializable {
     @FXML
     private Button btn_clear;
     @FXML
-    private Button btn_play;
-    @FXML
     private Button btn_rateMovie;
-    
+    @FXML
+    private Button btn_play;
+
+    /**
+     * Initializes the controller class.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -88,11 +91,11 @@ public class PrimaryController implements Initializable {
     }
 
     @FXML
-    private void handle_Playing(ActionEvent event) {
+    private void handle_Rating(ActionEvent event) {
     }
 
     @FXML
-    private void handle_Rating(ActionEvent event) {
+    private void handle_Playing(ActionEvent event) {
     }
     
 }
