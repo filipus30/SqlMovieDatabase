@@ -7,14 +7,22 @@ package sqlmoviedatabase.gui.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 
 /**
  * FXML Controller class
  *
- * @author PC
+ * @author Abdi
  */
 public class DeleteCategorySceneController implements Initializable {
+
+    @FXML
+    private Button btn_confirmCategory;
+    @FXML
+    private Button btn_cancelCategory;
 
     /**
      * Initializes the controller class.
@@ -23,5 +31,13 @@ public class DeleteCategorySceneController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
+
+    @FXML
+    private void handle_confirmCategory(ActionEvent event) {
+    }
+
+    @FXML
+    private void handle_cancelCategory(ActionEvent event) {
+    }
     
 }

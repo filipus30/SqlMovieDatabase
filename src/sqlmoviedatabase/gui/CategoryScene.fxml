@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="181.0" prefWidth="450.0" styleClass="greyBG" stylesheets="@../../../../MyTunesC/src/mytunes/gui/css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mytunes.gui.controller.PlaylistSceneController">
+<AnchorPane id="AnchorPane" prefHeight="181.0" prefWidth="450.0" styleClass="greyBG" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sqlmoviedatabase.gui.controller.CategorySceneController">
    <children>
       <Label id="lbl_NamePlaylist" layoutX="39.0" layoutY="59.0" text="Name:" textFill="WHITE">
          <font>
@@ -16,7 +16,7 @@
          </font>
       </Label>
       <TextField id="txtField_PlaylistName" fx:id="txtField_name" layoutX="95.0" layoutY="56.0" prefHeight="25.0" prefWidth="260.0" />
-      <Button id="btn_SavePlaylist" fx:id="btn_confirm" layoutX="290.0" layoutY="127.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handle_savePlaylist" prefHeight="20.0" prefWidth="20.0" textFill="WHITE" AnchorPane.rightAnchor="125.0">
+      <Button id="btn_SavePlaylist" fx:id="btn_saveCategory" layoutX="290.0" layoutY="127.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handle_saveCategory" prefHeight="20.0" prefWidth="20.0" textFill="WHITE" AnchorPane.rightAnchor="125.0">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -25,7 +25,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button id="btn_CancelPlaylist" fx:id="btn_cancel" layoutX="335.0" layoutY="127.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handle_closeScene" prefHeight="20.0" prefWidth="20.0" textFill="WHITE" AnchorPane.rightAnchor="95.0">
+      <Button id="btn_CancelPlaylist" fx:id="btn_closeScene" layoutX="335.0" layoutY="127.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handle_closeScene" prefHeight="20.0" prefWidth="20.0" textFill="WHITE" AnchorPane.rightAnchor="95.0">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>

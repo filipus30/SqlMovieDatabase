@@ -21,7 +21,7 @@
                   <Font name="Arial" size="16.0" />
                </font>
             </Label>
-            <Button layoutX="310.0" layoutY="182.0" mnemonicParsing="false">
+            <Button fx:id="btn_confirmMovie" layoutX="310.0" layoutY="182.0" mnemonicParsing="false" onAction="#handle_confirmMovie">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -30,7 +30,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button layoutX="365.0" layoutY="182.0" mnemonicParsing="false">
+            <Button fx:id="btn_closeScene" layoutX="365.0" layoutY="182.0" mnemonicParsing="false" onAction="#handle_closeScene">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>

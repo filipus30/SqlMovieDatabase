@@ -28,31 +28,31 @@ public class PrimaryController implements Initializable {
     @FXML
     private TableColumn<?, ?> col_IMDbRating;
     @FXML
-    private TextField SearchBar;
-    @FXML
     private Button btn_edit;
     @FXML
     private Button btn_remove;
     @FXML
-    private TableColumn<?, ?> col_MovieTitle;
-    @FXML
-    private TableColumn<?, ?> col_Length;
-    @FXML
-    private TableColumn<?, ?> col_UserRating;
-    @FXML
     private Button btn_add;
-    @FXML
-    private ComboBox<?> Categories;
-    @FXML
-    private ComboBox<?> Filter;
     @FXML
     private Button btn_editCategory;
     @FXML
     private Button btn_addCategory;
     @FXML
-    private TableColumn<?, ?> col_MovieGenres;
-    @FXML
     private Button btn_deleteCategory;
+    @FXML
+    private TableColumn<?, ?> col_movieTitle;
+    @FXML
+    private TableColumn<?, ?> col_movieGenres;
+    @FXML
+    private TableColumn<?, ?> col_length;
+    @FXML
+    private TableColumn<?, ?> col_userRating;
+    @FXML
+    private TextField searchbar;
+    @FXML
+    private ComboBox<?> categories;
+    @FXML
+    private ComboBox<?> filter;
 
     /**
      * Initializes the controller class.
@@ -63,13 +63,6 @@ public class PrimaryController implements Initializable {
     }    
 
 
-    @FXML
-    private void handle_EditMovie(ActionEvent event) {
-    }
-
-    @FXML
-    private void handle_RemoveMovie(ActionEvent event) {
-    }
 
     @FXML
     private void handle_Adding(ActionEvent event) {
@@ -87,9 +80,6 @@ public class PrimaryController implements Initializable {
     private void handle_Categories(ActionEvent event) {
     }
 
-    @FXML
-    private void handle_EditCategory(ActionEvent event) {
-    }
 
     @FXML
     private void handle_addCategory(ActionEvent event) {
@@ -97,6 +87,18 @@ public class PrimaryController implements Initializable {
 
     @FXML
     private void handle_deleteCategory(ActionEvent event) {
+    }
+
+    @FXML
+    private void handle_editMovie(ActionEvent event) {
+    }
+
+    @FXML
+    private void handle_removeMovie(ActionEvent event) {
+    }
+
+    @FXML
+    private void handle_editCategory(ActionEvent event) {
     }
     
 }

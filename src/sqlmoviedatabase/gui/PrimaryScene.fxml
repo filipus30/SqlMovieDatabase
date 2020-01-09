@@ -23,14 +23,14 @@
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#282828" height="121.0" layoutX="-4.0" layoutY="-5.0" stroke="BLACK" strokeType="INSIDE" width="1233.0" />
                   <TableView fx:id="tbv_Library" layoutX="210.0" layoutY="79.0" prefHeight="565.0" prefWidth="1009.0">
                     <columns>
-                      <TableColumn fx:id="col_MovieTitle" prefWidth="502.0" text="TITLE" />
-                      <TableColumn fx:id="col_MovieGenres" prefWidth="136.0" text="GENRES" />
-                        <TableColumn fx:id="col_Length" prefWidth="94.0" text="LENGTH" />
+                      <TableColumn fx:id="col_movieTitle" prefWidth="502.0" text="TITLE" />
+                      <TableColumn fx:id="col_movieGenres" prefWidth="136.0" text="GENRES" />
+                        <TableColumn fx:id="col_length" prefWidth="94.0" text="LENGTH" />
                         <TableColumn fx:id="col_IMDbRating" prefWidth="171.0" text="IMDb Rating" />
-                        <TableColumn fx:id="col_UserRating" prefWidth="112.0" text="User Rating" />
+                        <TableColumn fx:id="col_userRating" prefWidth="112.0" text="User Rating" />
                     </columns>
                   </TableView>
-                  <TextField fx:id="SearchBar" layoutX="212.0" layoutY="29.0" onAction="#handle_Search" prefHeight="31.0" prefWidth="715.0" promptText="Search..." />
+                  <TextField fx:id="searchbar" layoutX="212.0" layoutY="29.0" onAction="#handle_Search" prefHeight="31.0" prefWidth="715.0" promptText="Search..." />
                   <Pane layoutX="210.0" layoutY="660.0" prefHeight="45.0" prefWidth="252.0" style="-fx-background-color: #00FFFF#00FFFF;" stylesheets="@css/style.css">
                      <children>
                         <Button fx:id="btn_add" layoutX="11.0" layoutY="6.0" mnemonicParsing="false" onAction="#handle_Adding" prefHeight="31.0" prefWidth="227.0" text="Add Movie">
@@ -47,7 +47,7 @@
                   </ImageView>
                   <Pane layoutX="589.0" layoutY="660.0" prefHeight="45.0" prefWidth="252.0" style="-fx-background-color: #00FFFF#00FFFF;" stylesheets="@css/style.css">
                      <children>
-                        <Button fx:id="btn_edit" layoutX="11.0" layoutY="6.0" mnemonicParsing="false" onAction="#handle_EditMovie" prefHeight="31.0" prefWidth="227.0" text="Edit Movie">
+                        <Button fx:id="btn_edit" layoutX="11.0" layoutY="6.0" mnemonicParsing="false" onAction="#handle_editMovie" prefHeight="31.0" prefWidth="227.0" text="Edit Movie">
                            <font>
                               <Font name="Arial Bold" size="15.0" />
                            </font>
@@ -56,7 +56,7 @@
                   </Pane>
                   <Pane layoutX="967.0" layoutY="660.0" prefHeight="45.0" prefWidth="252.0" style="-fx-background-color: #00FFFF#00FFFF;" stylesheets="@css/style.css">
                      <children>
-                        <Button fx:id="btn_remove" layoutX="11.0" layoutY="6.0" mnemonicParsing="false" onAction="#handle_RemoveMovie" prefHeight="31.0" prefWidth="227.0" text="Remove Movie">
+                        <Button fx:id="btn_remove" layoutX="11.0" layoutY="6.0" mnemonicParsing="false" onAction="#handle_removeMovie" prefHeight="31.0" prefWidth="227.0" text="Remove Movie">
                            <font>
                               <Font name="Arial Bold" size="15.0" />
                            </font>
@@ -64,9 +64,9 @@
                      </children>
                   </Pane>
                   <ListView layoutX="10.0" layoutY="115.0" prefHeight="605.0" prefWidth="190.0" style="-fx-background-color: #121212;" />
-                  <ComboBox fx:id="Categories" layoutX="23.0" layoutY="128.0" onAction="#handle_Categories" prefHeight="31.0" prefWidth="165.0" promptText="     Categories" styleClass="lblFlow" stylesheets="@css/style.css" />
-                  <ComboBox fx:id="Filter" layoutX="1029.0" layoutY="30.0" onAction="#handle_Filter" prefWidth="150.0" promptText="Filter by rating" styleClass="lblFlow" stylesheets="@css/style.css" />
-                  <Button fx:id="btn_editCategory" layoutX="78.0" layoutY="57.0" mnemonicParsing="false" onAction="#handle_EditCategory" style="-fx-background-color: #121212;">
+                  <ComboBox fx:id="categories" layoutX="23.0" layoutY="128.0" onAction="#handle_Categories" prefHeight="31.0" prefWidth="165.0" promptText="     Categories" styleClass="lblFlow" stylesheets="@css/style.css" />
+                  <ComboBox fx:id="filter" layoutX="1029.0" layoutY="30.0" onAction="#handle_Filter" prefWidth="150.0" promptText="Filter by rating" styleClass="lblFlow" stylesheets="@css/style.css" />
+                  <Button fx:id="btn_editCategory" layoutX="78.0" layoutY="57.0" mnemonicParsing="false" onAction="#handle_editCategory" style="-fx-background-color: #121212;">
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
                            <image>

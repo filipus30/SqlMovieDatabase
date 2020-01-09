@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
@@ -20,9 +21,11 @@ import javafx.scene.control.Button;
 public class CategorySceneController implements Initializable {
 
     @FXML
-    private Button btn_confirm;
+    private TextField txtField_name;
     @FXML
-    private Button btn_cancel;
+    private Button btn_saveCategory;
+    @FXML
+    private Button btn_closeScene;
 
     /**
      * Initializes the controller class.

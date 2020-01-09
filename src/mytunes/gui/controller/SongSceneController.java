@@ -26,8 +26,6 @@ public class SongSceneController implements Initializable {
     @FXML
     private TextField txtField_artist;
     @FXML
-    private ChoiceBox<?> choiceBox_genre;
-    @FXML
     private TextField txtField_time;
     @FXML
     private TextField txtField_filePath;
@@ -41,10 +39,6 @@ public class SongSceneController implements Initializable {
     private Button btn_createVisible;
     @FXML
     private Button btn_deleteGenre;
-    @FXML
-    private TextField txt_createGenre;
-    @FXML
-    private Button btn_createGenre;
 
     /**
      * Initializes the controller class.
@@ -74,8 +68,5 @@ public class SongSceneController implements Initializable {
     private void handle_deleteGenre(ActionEvent event) {
     }
 
-    @FXML
-    private void handle_createGenre(ActionEvent event) {
-    }
     
 }
