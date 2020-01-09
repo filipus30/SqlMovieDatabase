@@ -70,5 +70,13 @@ public class PrimaryController implements Initializable {
     @FXML
     private void handle_Adding(ActionEvent event) {
     }
+
+    @FXML
+    private void handle_Search(ActionEvent event) {
+    }
+
+    @FXML
+    private void handle_Filter(ActionEvent event) {
+    }
     
 }
