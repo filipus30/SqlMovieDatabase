@@ -15,7 +15,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="736.0" prefWidth="1226.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sqlmoviedatabase.gui.controller.PrimaryController">
+<AnchorPane id="AnchorPane" prefHeight="736.0" prefWidth="1226.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sqlmoviedatabase.gui.controller.PrimaryController">
    <children>
       <VBox prefHeight="736.0" prefWidth="1226.0">
          <children>
@@ -24,15 +24,15 @@
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#282828" height="120.0" layoutX="-4.0" layoutY="-5.0" stroke="BLACK" strokeType="INSIDE" width="1233.0" />
                   <TableView fx:id="tbv_Library" layoutX="210.0" layoutY="79.0" prefHeight="565.0" prefWidth="1009.0">
                     <columns>
-                      <TableColumn fx:id="col_MovieLibrary" prefWidth="389.0" text="TITLE" />
-                      <TableColumn fx:id="col_IMDbRating" prefWidth="129.0" text="CATEGORIES" />
+                      <TableColumn fx:id="col_title" prefWidth="389.0" text="TITLE" />
+                      <TableColumn fx:id="col_category" prefWidth="129.0" text="CATEGORIES" />
                         <TableColumn prefWidth="167.0" text="LENGTH" />
-                        <TableColumn prefWidth="173.0" text="IMDb Rating" />
-                        <TableColumn prefWidth="157.0" text="User Rating" />
+                        <TableColumn fx:id="col_imdbrating" prefWidth="173.0" text="IMDb Rating" />
+                        <TableColumn fx:id="col_userrating" prefWidth="157.0" text="User Rating" />
                     </columns>
                   </TableView>
                   <TextField fx:id="SearchBar" layoutX="212.0" layoutY="29.0" prefHeight="31.0" prefWidth="715.0" promptText="Search..." />
-                  <Pane layoutX="210.0" layoutY="660.0" prefHeight="45.0" prefWidth="252.0" style="-fx-background-color: #1ED760,#00AD3C;" stylesheets="@css/style.css">
+                  <Pane layoutX="240.0" layoutY="660.0" prefHeight="45.0" prefWidth="252.0" style="-fx-background-color: #1ED760,#00AD3C;" stylesheets="@css/style.css">
                      <children>
                         <Button fx:id="btn_play" layoutX="11.0" layoutY="6.0" mnemonicParsing="false" onAction="#handle_Playing" prefHeight="31.0" prefWidth="227.0" text="Add Movie">
                            <font>
