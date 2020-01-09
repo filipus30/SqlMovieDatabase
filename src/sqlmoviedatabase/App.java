@@ -15,7 +15,7 @@ import javafx.stage.Stage;
  *
  * @author filip
  */
-public class SqlMovieDatabase extends Application {
+public class App extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
