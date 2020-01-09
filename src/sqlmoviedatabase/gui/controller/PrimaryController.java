@@ -33,9 +33,6 @@ public class PrimaryController implements Initializable {
 
     @FXML
     private Button btn_add;
-
-    @FXML
-    private Button btn_play;
     @FXML
     private Button btn_addCategory;
     @FXML
@@ -52,35 +49,27 @@ public class PrimaryController implements Initializable {
     private ComboBox<?> filter;
     @FXML
     private TableColumn<?, ?> col_lastViewed;
-
-    /**
-     * Initializes the controller class.
-     */
-
-    private TableView<Movie> tbv_Library;
     @FXML
-    private TextField SearchBar;
+    private TableView<Movie> tbv_Library;
     @FXML
     private Button btn_edit;
     @FXML
     private Button btn_remove;
     @FXML
-    private TableColumn<Movie,String> col_title;
+    private TableColumn<Movie,String> col_movieTitle;
     @FXML
-    private TableColumn<Movie,String> col_category;
-    
-     DalController dl = new DalController();
+    private TableColumn<Movie,String> col_IMDbRating;
     @FXML
-    private TableColumn<Movie,String> col_imdbrating;
+    private TableColumn<Movie,String> col_userRating;
     @FXML
-    private TableColumn<Movie,String> col_userrating;
-   
+    private Button btn_editCategory;
+    DalController dl = new DalController();
     @Override
     public void initialize(URL url, ResourceBundle rb) {
      ObservableList<Movie> movielist = FXCollections.observableArrayList(dl.getAllMovies());
-     col_title.setCellValueFactory(new PropertyValueFactory ("title"));
-     col_imdbrating.setCellValueFactory(new PropertyValueFactory ("Imdb_Rating"));
-      col_userrating.setCellValueFactory(new PropertyValueFactory ("Personal_Rating"));
+     col_movieTitle.setCellValueFactory(new PropertyValueFactory ("Title"));
+     col_IMDbRating.setCellValueFactory(new PropertyValueFactory ("Imdb_Rating"));
+      col_userRating.setCellValueFactory(new PropertyValueFactory ("Personal_Rating"));
     tbv_Library.setItems(movielist);
     }    
 
