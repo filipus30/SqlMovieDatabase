@@ -14,7 +14,9 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="736.0" prefWidth="1226.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sqlmoviedatabase.gui.controller.PrimaryController">
+
+<AnchorPane id="AnchorPane" prefHeight="736.0" prefWidth="1226.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sqlmoviedatabase.gui.controller.PrimaryController">
+
    <children>
       <VBox prefHeight="736.0" prefWidth="1226.0">
          <children>
@@ -23,6 +25,7 @@
                   <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#282828" height="121.0" layoutX="-4.0" layoutY="-5.0" stroke="BLACK" strokeType="INSIDE" width="1233.0" />
                   <TableView fx:id="tbv_Library" layoutX="210.0" layoutY="79.0" prefHeight="565.0" prefWidth="1009.0">
                     <columns>
+
                       <TableColumn fx:id="col_movieTitle" prefWidth="423.0" text="TITLE" />
                       <TableColumn fx:id="col_movieGenres" prefWidth="126.0" text="GENRES" />
                         <TableColumn fx:id="col_length" prefWidth="113.0" text="LENGTH" />
@@ -33,6 +36,7 @@
                   </TableView>
                   <TextField fx:id="searchbar" layoutX="212.0" layoutY="29.0" onAction="#handle_Search" prefHeight="31.0" prefWidth="715.0" promptText="Search..." />
                   <Pane layoutX="210.0" layoutY="660.0" prefHeight="45.0" prefWidth="252.0" style="-fx-background-color: #00FFFF#00FFFF;" stylesheets="@css/style.css">
+
                      <children>
                         <Button fx:id="btn_add" layoutX="11.0" layoutY="6.0" mnemonicParsing="false" onAction="#handle_Adding" prefHeight="31.0" prefWidth="227.0" text="Add Movie">
                            <font>

@@ -7,14 +7,20 @@ package sqlmoviedatabase.gui.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import sqlmoviedatabase.be.Movie;
+import sqlmoviedatabase.dal.DalController;
 
 /**
  * FXML Controller class
@@ -23,30 +29,21 @@ import javafx.scene.control.TextField;
  */
 public class PrimaryController implements Initializable {
 
-    @FXML
-    private TableView<?> tbv_Library;
-    @FXML
-    private TableColumn<?, ?> col_IMDbRating;
-    @FXML
-    private Button btn_edit;
-    @FXML
-    private Button btn_remove;
+
+
     @FXML
     private Button btn_add;
+
     @FXML
-    private Button btn_editCategory;
+    private Button btn_play;
     @FXML
     private Button btn_addCategory;
     @FXML
     private Button btn_deleteCategory;
     @FXML
-    private TableColumn<?, ?> col_movieTitle;
-    @FXML
     private TableColumn<?, ?> col_movieGenres;
     @FXML
     private TableColumn<?, ?> col_length;
-    @FXML
-    private TableColumn<?, ?> col_userRating;
     @FXML
     private TextField searchbar;
     @FXML
@@ -59,10 +56,34 @@ public class PrimaryController implements Initializable {
     /**
      * Initializes the controller class.
      */
+
+    private TableView<Movie> tbv_Library;
+    @FXML
+    private TextField SearchBar;
+    @FXML
+    private Button btn_edit;
+    @FXML
+    private Button btn_remove;
+    @FXML
+    private TableColumn<Movie,String> col_title;
+    @FXML
+    private TableColumn<Movie,String> col_category;
+    
+     DalController dl = new DalController();
+    @FXML
+    private TableColumn<Movie,String> col_imdbrating;
+    @FXML
+    private TableColumn<Movie,String> col_userrating;
+   
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+     ObservableList<Movie> movielist = FXCollections.observableArrayList(dl.getAllMovies());
+     col_title.setCellValueFactory(new PropertyValueFactory ("title"));
+     col_imdbrating.setCellValueFactory(new PropertyValueFactory ("Imdb_Rating"));
+      col_userrating.setCellValueFactory(new PropertyValueFactory ("Personal_Rating"));
+    tbv_Library.setItems(movielist);
     }    
+
 
 
 
@@ -101,6 +122,7 @@ public class PrimaryController implements Initializable {
 
     @FXML
     private void handle_editCategory(ActionEvent event) {
+
     }
     
 }
