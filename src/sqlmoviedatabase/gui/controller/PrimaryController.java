@@ -20,7 +20,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import sqlmoviedatabase.be.Movie;
-import sqlmoviedatabase.dal.DalController;
+import sqlmoviedatabase.bll.LogicManager;
+import sqlmoviedatabase.dal.MovieDAO;
+
 
 /**
  * FXML Controller class
@@ -63,10 +65,10 @@ public class PrimaryController implements Initializable {
     private TableColumn<Movie,String> col_userRating;
     @FXML
     private Button btn_editCategory;
-    DalController dl = new DalController();
+     LogicManager lm = new LogicManager();
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-     ObservableList<Movie> movielist = FXCollections.observableArrayList(dl.getAllMovies());
+     ObservableList<Movie> movielist = FXCollections.observableArrayList(lm.getAllMovies());
      col_movieTitle.setCellValueFactory(new PropertyValueFactory ("Title"));
      col_IMDbRating.setCellValueFactory(new PropertyValueFactory ("Imdb_Rating"));
       col_userRating.setCellValueFactory(new PropertyValueFactory ("Personal_Rating"));
