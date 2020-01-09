@@ -53,6 +53,8 @@ public class PrimaryController implements Initializable {
     private ComboBox<?> categories;
     @FXML
     private ComboBox<?> filter;
+    @FXML
+    private TableColumn<?, ?> col_lastViewed;
 
     /**
      * Initializes the controller class.
