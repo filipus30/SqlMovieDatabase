@@ -31,7 +31,7 @@
                         <TableColumn fx:id="col_UserRating" prefWidth="157.0" text="User Rating" />
                     </columns>
                   </TableView>
-                  <TextField fx:id="SearchBar" layoutX="212.0" layoutY="29.0" prefHeight="31.0" prefWidth="715.0" promptText="Search..." />
+                  <TextField fx:id="SearchBar" layoutX="212.0" layoutY="29.0" onAction="#handle_Search" prefHeight="31.0" prefWidth="715.0" promptText="Search..." />
                   <Pane layoutX="210.0" layoutY="660.0" prefHeight="45.0" prefWidth="252.0" style="-fx-background-color: #1ED760,#00AD3C;" stylesheets="@css/style.css">
                      <children>
                         <Button fx:id="btn_add" layoutX="11.0" layoutY="6.0" mnemonicParsing="false" onAction="#handle_Adding" prefHeight="31.0" prefWidth="227.0" text="Add Movie">
@@ -67,7 +67,7 @@
                   <ListView layoutX="10.0" layoutY="115.0" prefHeight="605.0" prefWidth="190.0" style="-fx-background-color: #121212;" />
                   <Label layoutX="47.0" layoutY="403.0" prefHeight="58.0" prefWidth="117.0" text="All Categories" textFill="WHITE" />
                   <ComboBox fx:id="Categories" layoutX="23.0" layoutY="128.0" prefHeight="31.0" prefWidth="165.0" promptText="     Categories" styleClass="lblFlow" stylesheets="@css/style.css" />
-                  <ComboBox fx:id="Filter" layoutX="1029.0" layoutY="30.0" prefWidth="150.0" promptText="Filter by rating" styleClass="lblFlow" stylesheets="@css/style.css" />
+                  <ComboBox fx:id="Filter" layoutX="1029.0" layoutY="30.0" onAction="#handle_Filter" prefWidth="150.0" promptText="Filter by rating" styleClass="lblFlow" stylesheets="@css/style.css" />
                   <Button fx:id="btn_editCategories" layoutX="129.0" layoutY="651.0" mnemonicParsing="false" style="-fx-background-color: #121212;">
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">

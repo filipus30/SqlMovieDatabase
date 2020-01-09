@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -25,17 +26,29 @@ public class PrimaryController implements Initializable {
     @FXML
     private TableView<?> tbv_Library;
     @FXML
-    private TableColumn<?, ?> col_MovieLibrary;
-    @FXML
     private TableColumn<?, ?> col_IMDbRating;
     @FXML
     private TextField SearchBar;
     @FXML
-    private Button btn_play;
-    @FXML
     private Button btn_edit;
     @FXML
     private Button btn_remove;
+    @FXML
+    private TableColumn<?, ?> col_MovieTitle;
+    @FXML
+    private TableColumn<?, ?> col_MovieCategories;
+    @FXML
+    private TableColumn<?, ?> col_Length;
+    @FXML
+    private TableColumn<?, ?> col_UserRating;
+    @FXML
+    private Button btn_add;
+    @FXML
+    private ComboBox<?> Categories;
+    @FXML
+    private ComboBox<?> Filter;
+    @FXML
+    private Button btn_editCategories;
 
     /**
      * Initializes the controller class.
@@ -45,9 +58,6 @@ public class PrimaryController implements Initializable {
         // TODO
     }    
 
-    @FXML
-    private void handle_Playing(ActionEvent event) {
-    }
 
     @FXML
     private void handle_EditMovie(ActionEvent event) {
@@ -55,6 +65,10 @@ public class PrimaryController implements Initializable {
 
     @FXML
     private void handle_RemoveMovie(ActionEvent event) {
+    }
+
+    @FXML
+    private void handle_Adding(ActionEvent event) {
     }
     
 }
