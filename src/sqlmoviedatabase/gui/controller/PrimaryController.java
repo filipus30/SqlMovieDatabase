@@ -51,6 +51,8 @@ public class PrimaryController implements Initializable {
     private Button btn_addCategory;
     @FXML
     private TableColumn<?, ?> col_MovieGenres;
+    @FXML
+    private Button btn_deleteCategory;
 
     /**
      * Initializes the controller class.
@@ -91,6 +93,10 @@ public class PrimaryController implements Initializable {
 
     @FXML
     private void handle_addCategory(ActionEvent event) {
+    }
+
+    @FXML
+    private void handle_deleteCategory(ActionEvent event) {
     }
     
 }
