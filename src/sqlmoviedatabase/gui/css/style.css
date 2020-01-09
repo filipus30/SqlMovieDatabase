@@ -1,0 +1,45 @@
+
+
+.button {
+   
+    -fx-background-color: transparent;
+    
+    -fx-opacity: 0.7;
+    
+    /*
+    transition: 1s all;
+*/
+    
+    
+}
+
+
+.lblFlow{
+    /* cyan color */
+    -fx-background-color: linear-gradient( #00FFFF,#00FFFF);
+    -fx-background-radius: 10px;
+    
+    
+}
+
+
+   
+
+
+
+
+.table-view{
+    -fx-background-color: #282828;
+    -fx-text-fill: white;
+}
+
+.button:hover{
+    transition: 1s all;
+    -fx-opacity: 1;
+    
+}
+
+.greyBG{
+    -fx-background-color: #282828;
+    }
+    
