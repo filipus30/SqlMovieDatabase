@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -9,86 +12,33 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="623.0" prefWidth="1013.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sqlmoviedatabase.gui.PrimaryController">
+<AnchorPane id="AnchorPane" prefHeight="736.0" prefWidth="1226.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sqlmoviedatabase.gui.PrimaryController">
    <children>
-      <VBox prefHeight="623.0" prefWidth="1013.0">
+      <VBox prefHeight="736.0" prefWidth="1226.0">
          <children>
-            <AnchorPane prefHeight="625.0" prefWidth="1013.0" style="-fx-background-color: #282828;">
+            <AnchorPane prefHeight="736.0" prefWidth="1255.0" style="-fx-background-color: #282828;">
                <children>
-                  <TableView fx:id="tbv_Category" layoutX="14.0" layoutY="83.0" prefHeight="387.0" prefWidth="244.0">
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#282828" height="120.0" layoutX="-4.0" layoutY="-5.0" stroke="BLACK" strokeType="INSIDE" width="1233.0" />
+                  <TableView fx:id="tbv_Library" layoutX="210.0" layoutY="79.0" prefHeight="565.0" prefWidth="1009.0">
                     <columns>
-                      <TableColumn fx:id="col_CategoryName" prefWidth="110.0" text="Name" />
-                      <TableColumn fx:id="col_MovieGenre" prefWidth="58.0" text="Genre" />
-                        <TableColumn fx:id="col_MovieLength" prefWidth="75.0" text="Length" />
+                      <TableColumn fx:id="col_MovieLibrary" prefWidth="389.0" text="TITLE" />
+                      <TableColumn fx:id="col_IMDbRating" prefWidth="129.0" text="CATEGORIES" />
+                        <TableColumn prefWidth="167.0" text="LENGTH" />
+                        <TableColumn prefWidth="173.0" text="IMDb Rating" />
+                        <TableColumn prefWidth="157.0" text="User Rating" />
                     </columns>
                   </TableView>
-                  <TableView fx:id="tbv_MoviesInCategory" layoutX="281.0" layoutY="83.0" prefHeight="345.0" prefWidth="271.0">
-                    <columns>
-                      <TableColumn fx:id="col_MovieTitles" prefWidth="270.0" text="Movies Titles" />
-                    </columns>
-                  </TableView>
-                  <TableView fx:id="tbv_Library" layoutX="618.0" layoutY="77.0" prefHeight="387.0" prefWidth="386.0">
-                    <columns>
-                      <TableColumn fx:id="col_MovieLibrary" prefWidth="180.0" text="Movie Library" />
-                      <TableColumn fx:id="col_IMDbRating" prefWidth="110.0" text="IMDb Rating" />
-                        <TableColumn fx:id="col_UserRating" prefWidth="94.0" text="User Rating" />
-                    </columns>
-                  </TableView>
-                  <Button fx:id="btn_moveMovies" layoutX="559.0" layoutY="179.0" mnemonicParsing="false" onAction="#handle_MoveMovies" prefHeight="6.0" prefWidth="0.0" style="-fx-background-color: #282828;">
-                     <graphic>
-                        <ImageView fitHeight="36.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@assets/icons8-left-50.png" />
-                           </image>
-                        </ImageView>
-                     </graphic></Button>
-                  <Button fx:id="btn_addCategory" layoutX="17.0" layoutY="481.0" mnemonicParsing="false" onAction="#handle_addCategory" text="Add" />
-                  <Button fx:id="btn_editCategory" layoutX="90.0" layoutY="481.0" mnemonicParsing="false" onAction="#handle_editCategory" text="Edit" />
-                  <Button fx:id="btn_deleteCategory" layoutX="168.0" layoutY="481.0" mnemonicParsing="false" onAction="#handle_deleteCategory" text="Delete" />
-                  <Button fx:id="btn_removeMoveInCategory" layoutX="380.0" layoutY="438.0" mnemonicParsing="false" onAction="#handle_removeMoveInCategory" text="Remove" />
-                  <Button fx:id="btn_addMovie" layoutX="713.0" layoutY="480.0" mnemonicParsing="false" onAction="#handle_addMovie" text="Add" />
-                  <Button fx:id="btn_editMovie" layoutX="781.0" layoutY="480.0" mnemonicParsing="false" onAction="#handle_editMovie" text="Edit" />
-                  <Button fx:id="btn_deleteMovie" layoutX="849.0" layoutY="480.0" mnemonicParsing="false" onAction="#handle_deleteMovie" text="Delete" />
-                  <Button fx:id="btn_editCategory" layoutX="305.0" layoutY="438.0" mnemonicParsing="false" onAction="#handle_editMovieInCategory" text="Edit" />
-                  <Button fx:id="btn_clear" layoutX="469.0" layoutY="438.0" mnemonicParsing="false" onAction="#handle_Clearing" text="Clear All" />
-                  <TextField fx:id="SearchBar" layoutX="675.0" layoutY="29.0" prefHeight="31.0" prefWidth="252.0" />
-                  <Pane layoutX="529.0" layoutY="548.0" prefHeight="45.0" prefWidth="252.0" style="-fx-background-color: #1ED760,#00AD3C;" stylesheets="@css/style.css">
+                  <TextField fx:id="SearchBar" layoutX="212.0" layoutY="29.0" prefHeight="31.0" prefWidth="715.0" promptText="Search..." />
+                  <Pane layoutX="210.0" layoutY="660.0" prefHeight="45.0" prefWidth="252.0" style="-fx-background-color: #1ED760,#00AD3C;" stylesheets="@css/style.css">
                      <children>
-                        <Button fx:id="btn_rateMovie" layoutX="14.0" layoutY="6.0" mnemonicParsing="false" onAction="#handle_Rating" prefHeight="31.0" prefWidth="227.0" text="Rate Movie">
+                        <Button fx:id="btn_play" layoutX="11.0" layoutY="6.0" mnemonicParsing="false" onAction="#handle_Playing" prefHeight="31.0" prefWidth="227.0" text="Add Movie">
                            <font>
                               <Font name="Arial Bold" size="15.0" />
                            </font>
                         </Button>
-                     </children>
-                  </Pane>
-                  <Pane layoutX="199.0" layoutY="548.0" prefHeight="45.0" prefWidth="252.0" style="-fx-background-color: #1ED760,#00AD3C;" stylesheets="@css/style.css">
-                     <children>
-                        <Button fx:id="btn_play" layoutX="11.0" layoutY="6.0" mnemonicParsing="false" onAction="#handle_Playing" prefHeight="31.0" prefWidth="227.0" text="Play Movie">
-                           <font>
-                              <Font name="Arial Bold" size="15.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </Pane>
-                  <Pane layoutX="36.0" layoutY="22.0" prefHeight="45.0" prefWidth="200.0" styleClass="lblFlow" stylesheets="@css/style.css">
-                     <children>
-                        <Text layoutX="56.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categories" wrappingWidth="159.6708984375">
-                           <font>
-                              <Font name="Arial Bold" size="15.0" />
-                           </font>
-                        </Text>
-                     </children>
-                  </Pane>
-                  <Pane layoutX="317.0" layoutY="22.0" prefHeight="45.0" prefWidth="200.0" styleClass="lblFlow" stylesheets="@css/style.css">
-                     <children>
-                        <Text layoutX="25.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Movies in Categories" wrappingWidth="159.6708984375">
-                           <font>
-                              <Font name="Arial Bold" size="15.0" />
-                           </font>
-                        </Text>
                      </children>
                   </Pane>
                   <ImageView fitHeight="41.0" fitWidth="28.0" layoutX="948.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
@@ -96,6 +46,37 @@
                         <Image url="@assets/icons8-search-30.png" />
                      </image>
                   </ImageView>
+                  <Pane layoutX="570.0" layoutY="660.0" prefHeight="45.0" prefWidth="252.0" style="-fx-background-color: #1ED760,#00AD3C;" stylesheets="@css/style.css">
+                     <children>
+                        <Button fx:id="btn_edit" layoutX="11.0" layoutY="6.0" mnemonicParsing="false" onAction="#handle_EditMovie" prefHeight="31.0" prefWidth="227.0" text="Edit Movie">
+                           <font>
+                              <Font name="Arial Bold" size="15.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="927.0" layoutY="660.0" prefHeight="45.0" prefWidth="252.0" style="-fx-background-color: #1ED760,#00AD3C;" stylesheets="@css/style.css">
+                     <children>
+                        <Button fx:id="btn_remove" layoutX="11.0" layoutY="6.0" mnemonicParsing="false" onAction="#handle_RemoveMovie" prefHeight="31.0" prefWidth="227.0" text="Remove Movie">
+                           <font>
+                              <Font name="Arial Bold" size="15.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </Pane>
+                  <ListView layoutX="10.0" layoutY="115.0" prefHeight="605.0" prefWidth="190.0" style="-fx-background-color: #121212;" />
+                  <Label layoutX="47.0" layoutY="403.0" prefHeight="58.0" prefWidth="117.0" text="All Categories" textFill="WHITE" />
+                  <ComboBox layoutX="23.0" layoutY="128.0" prefHeight="31.0" prefWidth="165.0" promptText="     Categories" styleClass="lblFlow" stylesheets="@css/style.css" />
+                  <ComboBox layoutX="1029.0" layoutY="30.0" prefWidth="150.0" promptText="Filter by rating" styleClass="lblFlow" stylesheets="@css/style.css" />
+                  <Button layoutX="129.0" layoutY="651.0" mnemonicParsing="false" style="-fx-background-color: #121212;">
+                     <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@assets/icons8-edit-50.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                </children>
             </AnchorPane>
          </children>
