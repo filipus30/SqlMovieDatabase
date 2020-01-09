@@ -11,6 +11,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
@@ -18,29 +21,20 @@ import javafx.scene.control.Button;
  * @author PC
  */
 public class PrimaryController implements Initializable {
-
-    @FXML
-    private Button btn_moveMovies;
-    @FXML
-    private Button btn_addCategory;
-    @FXML
-    private Button btn_editCategory;
-    @FXML
-    private Button btn_deleteCategory;
-    @FXML
-    private Button btn_removeMoveInCategory;
-    @FXML
-    private Button btn_addMovie;
-    @FXML
-    private Button btn_editMovie;
-    @FXML
-    private Button btn_deleteMovie;
-    @FXML
-    private Button btn_clear;
-    @FXML
-    private Button btn_rateMovie;
     @FXML
     private Button btn_play;
+    @FXML
+    private TableView<?> tbv_Library;
+    @FXML
+    private TableColumn<?, ?> col_MovieLibrary;
+    @FXML
+    private TableColumn<?, ?> col_IMDbRating;
+    @FXML
+    private TextField SearchBar;
+    @FXML
+    private Button btn_edit;
+    @FXML
+    private Button btn_remove;
 
     /**
      * Initializes the controller class.
@@ -50,52 +44,17 @@ public class PrimaryController implements Initializable {
         // TODO
     }    
 
-    @FXML
-    private void handle_MoveMovies(ActionEvent event) {
-    }
-
-    @FXML
-    private void handle_addCategory(ActionEvent event) {
-    }
-
-    @FXML
-    private void handle_editCategory(ActionEvent event) {
-    }
-
-    @FXML
-    private void handle_deleteCategory(ActionEvent event) {
-    }
-
-    @FXML
-    private void handle_removeMoveInCategory(ActionEvent event) {
-    }
-
-    @FXML
-    private void handle_addMovie(ActionEvent event) {
-    }
-
-    @FXML
-    private void handle_editMovie(ActionEvent event) {
-    }
-
-    @FXML
-    private void handle_deleteMovie(ActionEvent event) {
-    }
-
-    @FXML
-    private void handle_editMovieInCategory(ActionEvent event) {
-    }
-
-    @FXML
-    private void handle_Clearing(ActionEvent event) {
-    }
-
-    @FXML
-    private void handle_Rating(ActionEvent event) {
-    }
 
     @FXML
     private void handle_Playing(ActionEvent event) {
+    }
+
+    @FXML
+    private void handle_EditMovie(ActionEvent event) {
+    }
+
+    @FXML
+    private void handle_RemoveMovie(ActionEvent event) {
     }
     
 }
