@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="736.0" prefWidth="1226.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sqlmoviedatabase.gui.PrimaryController">
+   <children>
+      <VBox prefHeight="736.0" prefWidth="1226.0">
+         <children>
+            <AnchorPane prefHeight="736.0" prefWidth="1255.0" style="-fx-background-color: #282828;">
+               <children>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#282828" height="120.0" layoutX="-4.0" layoutY="-5.0" stroke="BLACK" strokeType="INSIDE" width="1233.0" />
+                  <TableView fx:id="tbv_Library" layoutX="210.0" layoutY="79.0" prefHeight="565.0" prefWidth="1009.0">
+                    <columns>
+                      <TableColumn fx:id="col_MovieLibrary" prefWidth="389.0" text="TITLE" />
+                      <TableColumn fx:id="col_IMDbRating" prefWidth="129.0" text="CATEGORIES" />
+                        <TableColumn prefWidth="167.0" text="LENGTH" />
+                        <TableColumn prefWidth="173.0" text="IMDb Rating" />
+                        <TableColumn prefWidth="157.0" text="User Rating" />
+                    </columns>
+                  </TableView>
+                  <TextField fx:id="SearchBar" layoutX="212.0" layoutY="29.0" prefHeight="31.0" prefWidth="715.0" promptText="Search..." />
+                  <Pane layoutX="210.0" layoutY="660.0" prefHeight="45.0" prefWidth="252.0" style="-fx-background-color: #1ED760,#00AD3C;" stylesheets="@css/style.css">
+                     <children>
+                        <Button fx:id="btn_play" layoutX="11.0" layoutY="6.0" mnemonicParsing="false" onAction="#handle_Playing" prefHeight="31.0" prefWidth="227.0" text="Add Movie">
+                           <font>
+                              <Font name="Arial Bold" size="15.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </Pane>
+                  <ImageView fitHeight="41.0" fitWidth="28.0" layoutX="948.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@assets/icons8-search-30.png" />
+                     </image>
+                  </ImageView>
+                  <Pane layoutX="570.0" layoutY="660.0" prefHeight="45.0" prefWidth="252.0" style="-fx-background-color: #1ED760,#00AD3C;" stylesheets="@css/style.css">
+                     <children>
+                        <Button fx:id="btn_edit" layoutX="11.0" layoutY="6.0" mnemonicParsing="false" onAction="#handle_EditMovie" prefHeight="31.0" prefWidth="227.0" text="Edit Movie">
+                           <font>
+                              <Font name="Arial Bold" size="15.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="927.0" layoutY="660.0" prefHeight="45.0" prefWidth="252.0" style="-fx-background-color: #1ED760,#00AD3C;" stylesheets="@css/style.css">
+                     <children>
+                        <Button fx:id="btn_remove" layoutX="11.0" layoutY="6.0" mnemonicParsing="false" onAction="#handle_RemoveMovie" prefHeight="31.0" prefWidth="227.0" text="Remove Movie">
+                           <font>
+                              <Font name="Arial Bold" size="15.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </Pane>
+                  <ListView layoutX="10.0" layoutY="115.0" prefHeight="605.0" prefWidth="190.0" style="-fx-background-color: #121212;" />
+                  <Label layoutX="47.0" layoutY="403.0" prefHeight="58.0" prefWidth="117.0" text="All Categories" textFill="WHITE" />
+                  <ComboBox layoutX="23.0" layoutY="128.0" prefHeight="31.0" prefWidth="165.0" promptText="     Categories" styleClass="lblFlow" stylesheets="@css/style.css" />
+                  <ComboBox layoutX="1029.0" layoutY="30.0" prefWidth="150.0" promptText="Filter by rating" styleClass="lblFlow" stylesheets="@css/style.css" />
+                  <Button layoutX="129.0" layoutY="651.0" mnemonicParsing="false" style="-fx-background-color: #121212;">
+                     <graphic>
+                        <ImageView fitHeight="35.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@assets/icons8-edit-50.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
