@@ -7,6 +7,7 @@ package sqlmoviedatabase.be;
 
 /**
  *
+
  * @author filip
  */
 public class Movie {
@@ -40,3 +41,4 @@ public float getImdb_Rating()
     return Imdb_rating;
 }
 }
+

@@ -15,13 +15,9 @@
 
 
 .lblFlow{
-    /* green stuff */
-    -fx-background-color: linear-gradient( #1ED760,#00AD3C);
+    /* cyan color */
+    -fx-background-color: linear-gradient( #00FFFF,#00FFFF);
     -fx-background-radius: 10px;
-    
-    /*
-    #00AD3C
-    */
     
     
 }
