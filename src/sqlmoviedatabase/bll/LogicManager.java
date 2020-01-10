@@ -5,10 +5,19 @@
  */
 package sqlmoviedatabase.bll;
 
+import java.util.List;
+import sqlmoviedatabase.be.Movie;
+import sqlmoviedatabase.dal.DalController;
+
 /**
  *
  * @author Abdi
  */
 public class LogicManager {
+    DalController dc = new DalController();
     
+    public List<Movie> getAllMovies()
+    {
+        return dc.getAllMovies();
+    }
 }

@@ -20,7 +20,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import sqlmoviedatabase.be.Movie;
-import sqlmoviedatabase.dal.DalController;
+import sqlmoviedatabase.bll.LogicManager;
+import sqlmoviedatabase.dal.MovieDAO;
+
 
 /**
  * FXML Controller class
@@ -33,9 +35,6 @@ public class PrimaryController implements Initializable {
 
     @FXML
     private Button btn_add;
-
-    @FXML
-    private Button btn_play;
     @FXML
     private Button btn_addCategory;
     @FXML
@@ -51,36 +50,29 @@ public class PrimaryController implements Initializable {
     @FXML
     private ComboBox<?> filter;
     @FXML
-    private TableColumn<?, ?> col_lastViewed;
-
-    /**
-     * Initializes the controller class.
-     */
-
-    private TableView<Movie> tbv_Library;
+    private TableColumn<Movie,String> col_lastViewed;
     @FXML
-    private TextField SearchBar;
+    private TableView<Movie> tbv_Library;
     @FXML
     private Button btn_edit;
     @FXML
     private Button btn_remove;
     @FXML
-    private TableColumn<Movie,String> col_title;
+    private TableColumn<Movie,String> col_movieTitle;
     @FXML
-    private TableColumn<Movie,String> col_category;
-    
-     DalController dl = new DalController();
+    private TableColumn<Movie,String> col_IMDbRating;
     @FXML
-    private TableColumn<Movie,String> col_imdbrating;
+    private TableColumn<Movie,String> col_userRating;
     @FXML
-    private TableColumn<Movie,String> col_userrating;
-   
+    private Button btn_editCategory;
+     LogicManager lm = new LogicManager();
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-     ObservableList<Movie> movielist = FXCollections.observableArrayList(dl.getAllMovies());
-     col_title.setCellValueFactory(new PropertyValueFactory ("title"));
-     col_imdbrating.setCellValueFactory(new PropertyValueFactory ("Imdb_Rating"));
-      col_userrating.setCellValueFactory(new PropertyValueFactory ("Personal_Rating"));
+     ObservableList<Movie> movielist = FXCollections.observableArrayList(lm.getAllMovies());
+     col_movieTitle.setCellValueFactory(new PropertyValueFactory ("Title"));
+     col_IMDbRating.setCellValueFactory(new PropertyValueFactory ("Imdb_Rating"));
+     col_userRating.setCellValueFactory(new PropertyValueFactory ("Personal_Rating"));
+     col_lastViewed.setCellValueFactory(new PropertyValueFactory ("LastView"));
     tbv_Library.setItems(movielist);
     }    
 

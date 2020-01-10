@@ -15,13 +15,14 @@ private String Title;
 private String Category;
 private int Personal_rating;
 private float Imdb_rating;
-public Movie(String title,int personal_rating,float imdb_rating)
+private String Lastview;
+public Movie(String title,int personal_rating,float imdb_rating,String lastview)
 {
     this.Title = title;
   //  this.Category = category;
   this.Personal_rating = personal_rating;
   this.Imdb_rating = imdb_rating;
-  
+  this.Lastview = lastview;
 }
 
 public String getTitle()
@@ -39,6 +40,10 @@ public int getPersonal_Rating()
 public float getImdb_Rating()
 {
     return Imdb_rating;
+}
+public String getLastView()
+{
+    return Lastview;
 }
 }
 
