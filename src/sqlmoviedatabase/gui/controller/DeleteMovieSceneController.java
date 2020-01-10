@@ -11,6 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -22,7 +23,11 @@ public class DeleteMovieSceneController implements Initializable {
     @FXML
     private Button btn_confirmMovie;
     @FXML
-    private Button btn_closeScene;
+    private Button btn_cancel;
+    
+    
+    
+    private PrimaryController pCon;
 
     /**
      * Initializes the controller class.
@@ -34,10 +39,20 @@ public class DeleteMovieSceneController implements Initializable {
 
     @FXML
     private void handle_confirmMovie(ActionEvent event) {
+        Stage stage;
+        stage = (Stage) btn_confirmMovie.getScene().getWindow();
+        stage.close();
+        
     }
 
     @FXML
     private void handle_closeScene(ActionEvent event) {
+        Stage stage = (Stage) btn_cancel.getScene().getWindow();
+        stage.close();
+    }
+    
+        public void setContr(PrimaryController pCon) {
+        this.pCon = pCon;
     }
     
 }

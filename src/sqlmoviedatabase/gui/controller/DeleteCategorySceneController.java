@@ -22,8 +22,11 @@ public class DeleteCategorySceneController implements Initializable {
     @FXML
     private Button btn_confirmCategory;
     @FXML
-    private Button btn_cancelCategory;
-
+    private Button btn_cancel;
+    
+    
+    private PrimaryController pCon;
+    
     /**
      * Initializes the controller class.
      */
@@ -37,7 +40,11 @@ public class DeleteCategorySceneController implements Initializable {
     }
 
     @FXML
-    private void handle_cancelCategory(ActionEvent event) {
+    private void handle_closeScene(ActionEvent event) {
+    }
+    
+        public void setContr(PrimaryController pCon) {
+        this.pCon = pCon;
     }
     
 }

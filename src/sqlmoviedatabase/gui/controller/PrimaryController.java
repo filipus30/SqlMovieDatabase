@@ -5,13 +5,19 @@
  */
 package sqlmoviedatabase.gui.controller;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 
 import javafx.scene.control.ComboBox;
@@ -19,9 +25,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.media.MediaPlayer;
+import javafx.stage.Stage;
 import sqlmoviedatabase.be.Movie;
 import sqlmoviedatabase.bll.LogicManager;
 import sqlmoviedatabase.dal.MovieDAO;
+import sqlmoviedatabase.model.MovieModel;
+
 
 
 /**
@@ -30,8 +40,6 @@ import sqlmoviedatabase.dal.MovieDAO;
  * @author Abdi
  */
 public class PrimaryController implements Initializable {
-
-
 
     @FXML
     private Button btn_add;
@@ -48,7 +56,7 @@ public class PrimaryController implements Initializable {
     @FXML
     private ComboBox<?> categories;
     @FXML
-    private ComboBox<?> filter;
+    private ComboBox<Integer> filter;
     @FXML
     private TableColumn<Movie,String> col_lastViewed;
     @FXML
@@ -65,56 +73,149 @@ public class PrimaryController implements Initializable {
     private TableColumn<Movie,String> col_userRating;
     @FXML
     private Button btn_editCategory;
-     LogicManager lm = new LogicManager();
+    LogicManager lm = new LogicManager();
+    private MovieModel movieModel;
+    private Movie movie;
+    @FXML
+    private Button btn_play;
+    
+    private MediaPlayer mediaPlayer;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-     ObservableList<Movie> movielist = FXCollections.observableArrayList(lm.getAllMovies());
+        settingTableViews();
+        filter.setItems(FXCollections.observableArrayList(
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
+        
+    }
+     private void settingTableViews() {
+      movieModel = new MovieModel();
+      
+     ObservableList<Movie> LibraryList = FXCollections.observableArrayList(lm.getAllMovies());
+     
      col_movieTitle.setCellValueFactory(new PropertyValueFactory ("Title"));
      col_IMDbRating.setCellValueFactory(new PropertyValueFactory ("Imdb_Rating"));
      col_userRating.setCellValueFactory(new PropertyValueFactory ("Personal_Rating"));
      col_lastViewed.setCellValueFactory(new PropertyValueFactory ("LastView"));
-    tbv_Library.setItems(movielist);
+     col_length.setCellValueFactory(new PropertyValueFactory<>("stringTime"));
+     tbv_Library.setItems(LibraryList);
     }    
 
 
-
-
     @FXML
-    private void handle_Adding(ActionEvent event) {
+    private void handle_addMovie(ActionEvent event) throws IOException {
+        Parent root1;
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/sqlmoviedatabase/gui/MovieScene.fxml"));
+        root1 = (Parent) fxmlLoader.load();
+        fxmlLoader.<MovieSceneController>getController().setContr(this);
+
+        Stage songStage = new Stage();
+        Scene songScene = new Scene(root1);
+
+        //songStage.initStyle(StageStyle.UNDECORATED);
+        songStage.setScene(songScene);
+        songStage.show();
     }
 
+    @FXML
+    private void handle_editMovie(ActionEvent event) throws IOException {
+        Movie selectedMovie = tbv_Library.getSelectionModel().getSelectedItem();
+
+        Parent root;
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/sqlmoviedatabase/gui/MovieScene.fxml"));
+        root = (Parent) fxmlLoader.load();
+        MovieSceneController controller = (MovieSceneController) fxmlLoader.getController();
+        controller.setContr(this);
+
+        Stage movieStage = new Stage();
+        Scene movieScene = new Scene(root);
+
+        //movieStage.initStyle(StageStyle.UNDECORATED);
+        movieStage.setScene(movieScene);
+        movieStage.show();
+    }
+    @FXML
+    private void handle_removeMovie(ActionEvent event) throws IOException {
+        
+        Movie selectedMovie = tbv_Library.getSelectionModel().getSelectedItem();
+        Parent root;
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/sqlmoviedatabase/gui/DeleteMovieScene.fxml"));
+        root = (Parent) fxmlLoader.load();
+        DeleteMovieSceneController controller = (DeleteMovieSceneController) fxmlLoader.getController();
+        controller.setContr(this);
+
+        Stage movieStage = new Stage();
+        Scene movieScene = new Scene(root);
+
+        //MovieStage.initStyle(StageStyle.UNDECORATED);
+        movieStage.setScene(movieScene);
+        movieStage.show();
+    }
+    @FXML
+    private void handle_editCategory(ActionEvent event) throws IOException {
+        
+        Parent root;
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/sqlmoviedatabase/gui/CategoryScene.fxml"));
+        root = (Parent) fxmlLoader.load();
+        CategorySceneController controller = (CategorySceneController) fxmlLoader.getController();
+        controller.setContr(this);
+
+        Stage movieStage = new Stage();
+        Scene movieScene = new Scene(root);
+
+        //movieStage.initStyle(StageStyle.UNDECORATED);
+        movieStage.setScene(movieScene);
+        movieStage.show();
+    }
+    
+    @FXML
+    private void handle_addCategory(ActionEvent event) throws IOException {
+        
+        Parent root1;
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/sqlmoviedatabase/gui/CategoryScene.fxml"));
+        root1 = (Parent) fxmlLoader.load();
+        fxmlLoader.<CategorySceneController>getController().setContr(this);
+
+        Stage songStage = new Stage();
+        Scene songScene = new Scene(root1);
+
+        //songStage.initStyle(StageStyle.UNDECORATED);
+        songStage.setScene(songScene);
+        songStage.show();
+    }
+
+    @FXML
+    private void handle_deleteCategory(ActionEvent event) throws IOException {
+
+        Parent root;
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/sqlmoviedatabase/gui/DeleteCategoryScene.fxml"));
+        root = (Parent) fxmlLoader.load();
+        DeleteCategorySceneController controller = (DeleteCategorySceneController) fxmlLoader.getController();
+        controller.setContr(this);
+
+        Stage movieStage = new Stage();
+        Scene movieScene = new Scene(root);
+
+        //MovieStage.initStyle(StageStyle.UNDECORATED);
+        movieStage.setScene(movieScene);
+        movieStage.show();
+    }
+        
     @FXML
     private void handle_Search(ActionEvent event) {
+        
     }
-
-    @FXML
-    private void handle_Filter(ActionEvent event) {
-    }
-
+    
     @FXML
     private void handle_Categories(ActionEvent event) {
-    }
-
-
-    @FXML
-    private void handle_addCategory(ActionEvent event) {
+        
     }
 
     @FXML
-    private void handle_deleteCategory(ActionEvent event) {
-    }
-
-    @FXML
-    private void handle_editMovie(ActionEvent event) {
-    }
-
-    @FXML
-    private void handle_removeMovie(ActionEvent event) {
-    }
-
-    @FXML
-    private void handle_editCategory(ActionEvent event) {
-
-    }
+    private void handle_playMovie(ActionEvent event) {
+        
+        
+        
+   }
     
 }

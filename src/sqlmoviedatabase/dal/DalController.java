@@ -23,7 +23,7 @@ import sqlmoviedatabase.be.Movie;
  * @author filip
  */
 public class DalController {
-     private List<Movie> movielist;
+     private List<Movie> LibraryList;
      private MovieDAO moviedao;
 
     public DalController()
@@ -35,13 +35,13 @@ public class DalController {
      {
          try
          {
-        movielist = moviedao.getAllMovies();
+        LibraryList = moviedao.getAllMovies();
          }
           catch(SQLException e)
           {
               
           }
-         return movielist;
+         return LibraryList;
      }
      
      

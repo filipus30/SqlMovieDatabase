@@ -5,10 +5,15 @@
  */
 package sqlmoviedatabase.bll.util;
 
+import java.util.ArrayList;
+import java.util.List;
+import sqlmoviedatabase.be.Movie;
+
 /**
  *
  * @author Abdi
  */
 public class Search {
     
+
 }

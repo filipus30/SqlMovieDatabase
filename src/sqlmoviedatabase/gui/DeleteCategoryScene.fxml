@@ -28,7 +28,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button fx:id="btn_cancelCategory" layoutX="365.0" layoutY="182.0" mnemonicParsing="false" onAction="#handle_cancelCategory">
+      <Button fx:id="btn_cancel" layoutX="365.0" layoutY="182.0" mnemonicParsing="false" onAction="#handle_closeScene">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
