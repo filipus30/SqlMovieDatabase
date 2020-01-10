@@ -50,7 +50,7 @@ public class PrimaryController implements Initializable {
     @FXML
     private ComboBox<?> filter;
     @FXML
-    private TableColumn<?, ?> col_lastViewed;
+    private TableColumn<Movie,String> col_lastViewed;
     @FXML
     private TableView<Movie> tbv_Library;
     @FXML
@@ -71,7 +71,8 @@ public class PrimaryController implements Initializable {
      ObservableList<Movie> movielist = FXCollections.observableArrayList(lm.getAllMovies());
      col_movieTitle.setCellValueFactory(new PropertyValueFactory ("Title"));
      col_IMDbRating.setCellValueFactory(new PropertyValueFactory ("Imdb_Rating"));
-      col_userRating.setCellValueFactory(new PropertyValueFactory ("Personal_Rating"));
+     col_userRating.setCellValueFactory(new PropertyValueFactory ("Personal_Rating"));
+     col_lastViewed.setCellValueFactory(new PropertyValueFactory ("LastView"));
     tbv_Library.setItems(movielist);
     }    
 

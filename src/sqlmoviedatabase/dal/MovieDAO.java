@@ -47,11 +47,12 @@ public class MovieDAO {
                 String title = rs.getString("Title");
                 int personalrating = rs.getInt("Personal_Rating");
                 float imdbrating = rs.getFloat("IMDB_Rating");
+                String lastview = rs.getString("LastView");
                 
                 // String category = rs.getString("CatName");
               //  int id = rs.getInt("id");
                 //Create a new instance of the busioness entity Song with the values.
-                Movie p = new Movie(title,personalrating,imdbrating);
+                Movie p = new Movie(title,personalrating,imdbrating,lastview);
                 movies.add(p);//Add the movie to the list.
             }
             
