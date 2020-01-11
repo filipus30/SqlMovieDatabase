@@ -20,6 +20,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
+import sqlmoviedatabase.be.Category;
 import sqlmoviedatabase.be.Movie;
 import sqlmoviedatabase.bll.LogicManager;
 import sqlmoviedatabase.dal.MovieDAO;
@@ -47,7 +48,7 @@ public class PrimaryController implements Initializable {
     @FXML
     private TextField searchbar;
     @FXML
-    private ComboBox<?> categories;
+    private ComboBox<Category> categories;
     @FXML
     private ComboBox<?> filter;
     @FXML
@@ -70,11 +71,13 @@ public class PrimaryController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
      ObservableList<Movie> movielist = FXCollections.observableArrayList(lm.getAllMovies());
+     ObservableList<Category> categorylist = FXCollections.observableArrayList(lm.getAllCategories());
      col_movieTitle.setCellValueFactory(new PropertyValueFactory ("Title"));
      col_IMDbRating.setCellValueFactory(new PropertyValueFactory ("Imdb_Rating"));
      col_userRating.setCellValueFactory(new PropertyValueFactory ("Personal_Rating"));
      col_lastViewed.setCellValueFactory(new PropertyValueFactory ("LastView"));
-    tbv_Library.setItems(movielist);
+     tbv_Library.setItems(movielist);
+     categories.setItems(categorylist);
     }    
 
 

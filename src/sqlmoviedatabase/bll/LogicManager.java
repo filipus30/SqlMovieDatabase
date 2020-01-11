@@ -8,6 +8,7 @@ package sqlmoviedatabase.bll;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import sqlmoviedatabase.be.Category;
 import sqlmoviedatabase.be.Movie;
 import sqlmoviedatabase.dal.DalController;
 
@@ -22,6 +23,13 @@ public class LogicManager {
     {
         return dc.getAllMovies();
     }
+    
+    public List<Category> getAllCategories()
+    {
+        return dc.getAllCategories();
+    }
+    
+    
     
     
      public ObservableList<Movie> search(ObservableList<Movie> searchBase, String query) {
