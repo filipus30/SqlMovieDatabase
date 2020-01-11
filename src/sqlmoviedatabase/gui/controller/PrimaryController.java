@@ -19,6 +19,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import sqlmoviedatabase.be.Movie;
 import sqlmoviedatabase.bll.LogicManager;
 import sqlmoviedatabase.dal.MovieDAO;
@@ -115,6 +116,13 @@ public class PrimaryController implements Initializable {
     @FXML
     private void handle_editCategory(ActionEvent event) {
 
+    }
+
+    @FXML
+    private void handle_search(KeyEvent event) {
+             ObservableList<Movie> movielist = FXCollections.observableArrayList(lm.getAllMovies());
+       tbv_Library.setItems( lm.search(movielist,searchbar.getText()));
+       
     }
     
 }
