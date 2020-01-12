@@ -10,5 +10,19 @@ package sqlmoviedatabase.be;
  * @author Abdi
  */
 public class Category {
-    
+private String Catname;
+    public Category(String catname)
+    {
+        this.Catname = catname;
+    }
+            
+     public String getCatname()
+    {
+        return Catname;
+    }
+    @Override
+    public String toString() {
+        
+        return  getCatname();
+    }
 }
