@@ -6,6 +6,9 @@
 package sqlmoviedatabase.bll;
 
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import sqlmoviedatabase.be.Category;
 import sqlmoviedatabase.be.Movie;
 import sqlmoviedatabase.dal.DalController;
 
@@ -19,5 +22,31 @@ public class LogicManager {
     public List<Movie> getAllMovies()
     {
         return dc.getAllMovies();
+    }
+    
+    public List<Category> getAllCategories()
+    {
+        return dc.getAllCategories();
+    }
+    
+    
+    
+    
+     public ObservableList<Movie> search(ObservableList<Movie> searchBase, String query) {
+          
+       ObservableList<Movie> filtered = FXCollections.observableArrayList();
+
+        if (query.isEmpty()) {
+            return searchBase;
+        }
+
+        for (Movie movie : searchBase) {
+            if (movie.getTitle().toLowerCase().contains(query.toLowerCase() )) //|| movie.getCategory().toLowerCase().contains(query.toLowerCase())
+            {
+                filtered.add(movie);
+            }
+        }
+
+        return filtered;
     }
 }

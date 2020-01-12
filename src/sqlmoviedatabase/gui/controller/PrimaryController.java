@@ -27,6 +27,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import sqlmoviedatabase.be.Category;
 import sqlmoviedatabase.be.Movie;
 import sqlmoviedatabase.bll.LogicManager;
 import sqlmoviedatabase.dal.MovieDAO;
@@ -92,13 +93,15 @@ public class PrimaryController implements Initializable {
       movieModel = new MovieModel();
       
      ObservableList<Movie> movies = FXCollections.observableArrayList(lm.getAllMovies());
-     
+     ObservableList<Category> categorylist = FXCollections.observableArrayList(lm.getAllCategories());
      col_movieTitle.setCellValueFactory(new PropertyValueFactory ("Title"));
      col_IMDbRating.setCellValueFactory(new PropertyValueFactory ("Imdb_Rating"));
      col_userRating.setCellValueFactory(new PropertyValueFactory ("Personal_Rating"));
      col_lastViewed.setCellValueFactory(new PropertyValueFactory ("LastView"));
      col_length.setCellValueFactory(new PropertyValueFactory<>("stringTime"));
+     col_movieGenres.setCellValueFactory(new PropertyValueFactory ("Category"));     
      tbv_Library.setItems(movies);
+     categories.setItems(categorylist);
     }    
 
 
@@ -203,7 +206,8 @@ public class PrimaryController implements Initializable {
         
     @FXML
     private void handle_Search(ActionEvent event) {
-        
+       ObservableList<Movie> movielist = FXCollections.observableArrayList(lm.getAllMovies());
+       tbv_Library.setItems( lm.search(movielist,searchbar.getText()));
     }
     
     @FXML

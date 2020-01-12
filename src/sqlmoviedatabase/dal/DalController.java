@@ -17,17 +17,21 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import sqlmoviedatabase.be.Category;
 import sqlmoviedatabase.be.Movie;
 /**
  *
  * @author filip
  */
 public class DalController {
-     private List<Movie> LibraryList;
+     private List<Movie> movielist;
+     private List<Category> categorylist;
      private MovieDAO moviedao;
+     private CategoryDAO categorydao;
 
     public DalController()
     {
+    categorydao = new CategoryDAO();
     moviedao = new MovieDAO();
     }
          
@@ -35,15 +39,26 @@ public class DalController {
      {
          try
          {
-        LibraryList = moviedao.getAllMovies();
+        movielist = moviedao.getAllMovies();
          }
           catch(SQLException e)
           {
               
           }
-         return LibraryList;
+         return movielist;
      }
      
-     
+     public List<Category> getAllCategories()
+     {
+         try
+         {
+             categorylist = categorydao.getAllCategories();
+         }
+         catch(SQLException e)
+         {
+             
+         }
+         return categorylist;
+     }
 
 }
