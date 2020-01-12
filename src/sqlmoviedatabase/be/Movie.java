@@ -16,10 +16,10 @@ private String Category;
 private int Personal_rating;
 private float Imdb_rating;
 private String Lastview;
-public Movie(String title,int personal_rating,float imdb_rating,String lastview)
+public Movie(String title,int personal_rating,float imdb_rating,String lastview ,String category)
 {
-    this.Title = title;
-  //  this.Category = category;
+  this.Title = title;
+  this.Category = category;
   this.Personal_rating = personal_rating;
   this.Imdb_rating = imdb_rating;
   this.Lastview = lastview;
@@ -33,6 +33,12 @@ public String getCategory()
 {
     return Category;
 }
+
+public void setCategory(String cat)
+{
+    Category = cat;
+}
+    
 public int getPersonal_Rating()
 {
     return Personal_rating;

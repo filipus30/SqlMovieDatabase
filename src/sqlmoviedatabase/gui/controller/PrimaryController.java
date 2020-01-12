@@ -76,8 +76,12 @@ public class PrimaryController implements Initializable {
      col_IMDbRating.setCellValueFactory(new PropertyValueFactory ("Imdb_Rating"));
      col_userRating.setCellValueFactory(new PropertyValueFactory ("Personal_Rating"));
      col_lastViewed.setCellValueFactory(new PropertyValueFactory ("LastView"));
+
+     col_movieGenres.setCellValueFactory(new PropertyValueFactory ("Category"));
+
      tbv_Library.setItems(movielist);
      categories.setItems(categorylist);
+
     }    
 
 
