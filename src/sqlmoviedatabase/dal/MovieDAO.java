@@ -66,8 +66,6 @@ public class MovieDAO {
                     for(Movie m : movies){
                         Movie currentMovie = m;
                         String currentTitle = currentMovie.getTitle();
-                        System.out.println(title);
-                        System.out.println("cur title:" + currentTitle);
 
                         if(currentTitle.equals(title)) {
                             category = currentMovie.getCategory().concat(category);
