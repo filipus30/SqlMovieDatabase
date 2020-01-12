@@ -21,7 +21,7 @@ private String stringTime;
 private String path;
 private String genre;
 
-public Movie(String title,int personal_rating,float imdb_rating,String lastview)
+public Movie(String title,int personal_rating,float imdb_rating,String lastview, String path, int time)
 {
     this.Title = title;
   //  this.Category = category;
@@ -66,7 +66,7 @@ public String getLastView()
    public String getStringTime() {
    return stringTime;
     }
-       @Override
+    @Override
     public String toString() {
         return Title;
     }

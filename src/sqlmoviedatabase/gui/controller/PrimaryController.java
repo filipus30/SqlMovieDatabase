@@ -91,14 +91,14 @@ public class PrimaryController implements Initializable {
      private void settingTableViews() {
       movieModel = new MovieModel();
       
-     ObservableList<Movie> LibraryList = FXCollections.observableArrayList(lm.getAllMovies());
+     ObservableList<Movie> movies = FXCollections.observableArrayList(lm.getAllMovies());
      
      col_movieTitle.setCellValueFactory(new PropertyValueFactory ("Title"));
      col_IMDbRating.setCellValueFactory(new PropertyValueFactory ("Imdb_Rating"));
      col_userRating.setCellValueFactory(new PropertyValueFactory ("Personal_Rating"));
      col_lastViewed.setCellValueFactory(new PropertyValueFactory ("LastView"));
      col_length.setCellValueFactory(new PropertyValueFactory<>("stringTime"));
-     tbv_Library.setItems(LibraryList);
+     tbv_Library.setItems(movies);
     }    
 
 

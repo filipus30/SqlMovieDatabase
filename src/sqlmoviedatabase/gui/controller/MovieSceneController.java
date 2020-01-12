@@ -6,6 +6,8 @@
 package sqlmoviedatabase.gui.controller;
 
 import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -69,9 +71,18 @@ public class MovieSceneController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        
+        edit = false;
+        movieModel = new MovieModel();
+        genreModel = new GenreModel();
+
+        //Get all genres.
+        List<String> allGenres = genreModel.getAllGenres();
+        //Add all the genres to the ChoiceBox.
+        for (String allGenre : allGenres) {
+            choiceBox_genre.getItems().add(allGenre);
+        }
     }
+    
     @FXML
     private void handle_createVisible(ActionEvent event) {
         txt_createGenre.setVisible(true);
@@ -86,7 +97,7 @@ public class MovieSceneController implements Initializable {
     }
 
     @FXML
-    private void handle_openFileChooser(ActionEvent event) {
+    private void handle_openFileChooser(ActionEvent event) throws MalformedURLException  {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("mp4 Files", "*.mp4"),
@@ -116,21 +127,19 @@ public class MovieSceneController implements Initializable {
     
     
     @FXML
-    private void handle_saveMovie(ActionEvent event) {
+    private void handle_saveMovie(ActionEvent event) throws InterruptedException, IOException{
         if (!edit) {
             movieModel.createMovie(txtField_title.getText().trim(),
-             movieModel.format_To_Sec(txtField_time.getText()),
-             choiceBox_genre.getSelectionModel().getSelectedItem(),
-              txtField_filePath.getText());
+                    movieModel.format_To_Sec(txtField_time.getText()),
+                    choiceBox_genre.getSelectionModel().getSelectedItem(),
+                    txtField_filePath.getText());
         } else {
             movieModel.updateMovie(movieToEdit,
-            txtField_title.getText().trim(),
-            choiceBox_genre.getSelectionModel().getSelectedItem(),
-            movieModel.format_To_Sec(txtField_time.getText()),
-            txtField_filePath.getText());
+                    txtField_title.getText().trim(),
+                    choiceBox_genre.getSelectionModel().getSelectedItem(),
+                    movieModel.format_To_Sec(txtField_time.getText()),
+                    txtField_filePath.getText());
         }
-
-
 
         Stage stage;
         stage = (Stage) btn_save.getScene().getWindow();
