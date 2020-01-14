@@ -51,7 +51,6 @@ public class MovieDAO {
                 float imdbrating = rs.getFloat("IMDB_Rating");
                 String lastview = rs.getString("LastView");
                 
-                
 
                 
                 if(movies.isEmpty()){

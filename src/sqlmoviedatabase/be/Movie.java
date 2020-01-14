@@ -21,9 +21,10 @@ private String stringTime;
 private String path;
 private String genre;
 
-public Movie(String title,int personal_rating,float imdb_rating,String lastview, String path, int time)
+public Movie(String title,int personal_rating,float imdb_rating,String lastview)
 {
     this.Title = title;
+    
   //  this.Category = category;
   this.Personal_rating = personal_rating;
   this.Imdb_rating = imdb_rating;
@@ -55,6 +56,11 @@ public float getImdb_Rating()
 public String getLastView()
 {
     return Lastview;
+}
+
+public void setCategory(String cat)
+{
+    Category = cat;
 }
 
  public int getTime() {

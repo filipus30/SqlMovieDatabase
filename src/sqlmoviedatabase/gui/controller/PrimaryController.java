@@ -221,5 +221,9 @@ public class PrimaryController implements Initializable {
         
         
    }
+
+    @FXML
+    private void handle_Filter(ActionEvent event) {
+    }
     
 }
