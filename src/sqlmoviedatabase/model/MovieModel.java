@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import sqlmoviedatabase.be.Movie;
 import sqlmoviedatabase.bll.LogicFacade;
+import sqlmoviedatabase.bll.LogicManager;
 
 /**
  *
@@ -19,18 +20,22 @@ import sqlmoviedatabase.bll.LogicFacade;
 
 public final class MovieModel  {
   
-    private ObservableList<Movie> LibraryList;
+    private ObservableList<Movie> movielist;
     private LogicFacade logicManager;
     
+    public MovieModel() {
+        logicManager = new LogicManager();
+        getmovielist();
+    }
     
-        public ObservableList<Movie> getLibraryList() {
+        public ObservableList<Movie> getmovielist() {
         List<Movie> allMovies = logicManager.getAllMovies();
         for (Movie movie1 : allMovies) {
             //Save the converted time in the hh:mm:ss format before adding the song to an ObservableList.
             movie1.setStringTime(sec_To_Format(movie1.getTime()));
         }
-        LibraryList = FXCollections.observableArrayList(allMovies);
-        return LibraryList;
+        movielist = FXCollections.observableArrayList(allMovies);
+        return movielist;
     }
         public String sec_To_Format(int sec) {
         return logicManager.sec_To_Format(sec);
@@ -41,7 +46,7 @@ public final class MovieModel  {
     }
         public void createMovie(String title, int time, String genre, String path) {
         Movie movie = logicManager.createMovie(title, time, path, genre);
-        LibraryList.add(movie);
+        movielist.add(movie);
     }
         
         public void updateMovie(Movie movie, String editedTitle, String editedGenre, int editedTime, String editedPath) {
@@ -50,7 +55,7 @@ public final class MovieModel  {
         
         public void deleteMovie(Movie movie) {
         logicManager.deleteMovie(movie);
-        LibraryList.remove(movie);
+        movielist.remove(movie);
     }
 
 }

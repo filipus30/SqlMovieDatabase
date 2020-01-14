@@ -9,6 +9,7 @@ import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -91,14 +92,14 @@ public class PrimaryController implements Initializable {
      private void settingTableViews() {
       movieModel = new MovieModel();
       
-     ObservableList<Movie> LibraryList = FXCollections.observableArrayList(lm.getAllMovies());
+     ObservableList<Movie> movielist = FXCollections.observableArrayList(lm.getAllMovies());
      
      col_movieTitle.setCellValueFactory(new PropertyValueFactory ("Title"));
      col_IMDbRating.setCellValueFactory(new PropertyValueFactory ("Imdb_Rating"));
      col_userRating.setCellValueFactory(new PropertyValueFactory ("Personal_Rating"));
      col_lastViewed.setCellValueFactory(new PropertyValueFactory ("LastView"));
      col_length.setCellValueFactory(new PropertyValueFactory<>("stringTime"));
-     tbv_Library.setItems(LibraryList);
+     tbv_Library.setItems(movieModel.getmovielist());
     }    
 
 
@@ -203,7 +204,8 @@ public class PrimaryController implements Initializable {
         
     @FXML
     private void handle_Search(ActionEvent event) {
-        
+       List<Movie> movielist = FXCollections.observableArrayList(lm.getAllMovies());
+       tbv_Library.setItems((ObservableList<Movie>) lm.search(movielist,searchbar.getText()));
     }
     
     @FXML
@@ -212,10 +214,9 @@ public class PrimaryController implements Initializable {
     }
 
     @FXML
-    private void handle_playMovie(ActionEvent event) {
+    private void handle_playMovie(ActionEvent event) throws IOException {
         
-        
-        
+        Desktop.getDesktop().open(new File("C:\\Users\\PC\\Pictures\\trihard.mp4"));
    }
     
 }
