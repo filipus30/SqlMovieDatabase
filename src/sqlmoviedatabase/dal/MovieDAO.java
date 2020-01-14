@@ -116,21 +116,7 @@ public class MovieDAO {
             remstmt.setInt(1, movie.getmovId());
             remstmt.execute();
             
-            String[] cat = categories.split(",");
-            
-            for(int i=0; i<cat.length ; i++){
-                String catstmt = "SELECT * FROM Categories WHERE CatName=?;";
-                Statement statement = con.createStatement();
-                ResultSet crs = statement.executeQuery(catstmt);//fetch the result of the SQL statement and store it.
-                while(crs.next()){ //While there is something listed...
-                    int categoryID = crs.getInt("CatId");
-                    String enterCat ="INSERT INTO CatMov VALUES MovID=?, CatID=?";
-                    PreparedStatement catSetstmt = con.prepareStatement(enterCat);
-                    catSetstmt.setInt(1, movie.getmovId());
-                    catSetstmt.setInt(2, categoryID);
-                    catSetstmt.execute();
-                }
-            }
+            createCatMovRelationship(movie.getmovId(), categories);
             
             
         } catch (SQLServerException ex) {
@@ -161,4 +147,54 @@ public class MovieDAO {
         }
     }
 
+    public Movie createMovie(int movid, String title,int personal_rating,float imdb_rating, String lastview ,String fileLocation, String category, String duration){
+        try(Connection con = ds.getConnection()){
+            String sqlinsertstmt = "INSERT INTO Movies (Title, Personal_Rating, IMDB_Rating, LastView, FileLink, Duration) VALUES (?,?,?,?,?,?);";
+            PreparedStatement insertstmt = con.prepareStatement(sqlinsertstmt);
+            insertstmt.setString(1, "" + title + "");
+            insertstmt.setInt(2, personal_rating);
+            insertstmt.setFloat(3, imdb_rating);
+            insertstmt.setString(4, "" + lastview + "");
+            insertstmt.setString(5, "" + fileLocation + "");
+            insertstmt.setString(6, "" + duration + "");
+            insertstmt.execute();
+            
+            createCatMovRelationship(movid, category);
+   
+        
+ 
+        }   catch (SQLServerException ex) {
+            Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return new Movie(movid, title, personal_rating,imdb_rating, lastview, fileLocation, category, duration);
+       
+    }
+    
+    private void createCatMovRelationship(int movid, String categories){
+        String[] cat = categories.split(",");
+        try(Connection con = ds.getConnection()){    
+            for (int i=0; i<cat.length; i++) {
+                String catstmt = "SELECT * FROM Categories WHERE CatName=?;";
+                PreparedStatement catSelstmt = con.prepareStatement(catstmt,Statement.RETURN_GENERATED_KEYS);
+                catSelstmt.setString(1, "" + cat[i] + "");
+                catSelstmt.execute();
+                ResultSet crs = catSelstmt.getGeneratedKeys();//fetch the result of the SQL statement and store it.
+                while(crs.next()){ //While there is something listed...
+                    int categoryID = crs.getInt("CatId");
+                    String enterCat ="INSERT INTO CatMov (MovId, CatId) VALUES (?, ?)";
+                    PreparedStatement catSetstmt = con.prepareStatement(enterCat);
+                    catSetstmt.setInt(1, movid);
+                    catSetstmt.setInt(2, categoryID);
+                    catSetstmt.execute();
+                }
+            }
+        } catch (SQLServerException ex) {
+            Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
