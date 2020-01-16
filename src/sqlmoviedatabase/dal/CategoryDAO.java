@@ -12,6 +12,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import sqlmoviedatabase.be.Category;
 import sqlmoviedatabase.be.Movie;
 
@@ -30,7 +32,7 @@ public class CategoryDAO {
                  ds.setPortNumber(1433);
                  ds.setServerName("10.176.111.31");
     }
-    public List<Category> getAllCategories() throws SQLException
+    public List<Category> getAllCategories() 
     { 
         List<Category> categories = new ArrayList();//create a list to store all our categories
         try (Connection con = ds.getConnection()){
@@ -46,7 +48,9 @@ public class CategoryDAO {
                categories.add(p);//Add the category to the list.
             }
             
-        }
+        } catch (SQLException ex) {
+             Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
+         }
         
         
         return categories;//return the list of categories.

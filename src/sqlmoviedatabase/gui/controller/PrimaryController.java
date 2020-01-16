@@ -114,7 +114,7 @@ public class PrimaryController implements Initializable {
 
      col_movieGenres.setCellValueFactory(new PropertyValueFactory ("Category"));
 
-   //  tbv_Library.setItems(movielist);
+     tbv_Library.setItems(movielist);
      categories.setItems(categorylist);
 
 
@@ -241,11 +241,5 @@ public class PrimaryController implements Initializable {
     private void handle_Filter(ActionEvent event) {
     }
 
-    @FXML
-    private void handle_search(KeyEvent event) {
-             ObservableList<Movie> movielist = FXCollections.observableArrayList(lm.getAllMovies());
-       tbv_Library.setItems( lm.search(movielist,searchbar.getText()));
-       
-    }
-    
+  
 }

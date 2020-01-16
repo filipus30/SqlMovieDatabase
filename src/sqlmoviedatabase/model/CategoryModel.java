@@ -6,6 +6,7 @@
 package sqlmoviedatabase.model;
 
 import java.util.List;
+import sqlmoviedatabase.be.Category;
 import sqlmoviedatabase.bll.LogicFacade;
 import sqlmoviedatabase.bll.LogicManager;
 
@@ -29,7 +30,7 @@ public class CategoryModel {
      *
      * @return A String list of all genres.
      */
-    public List<String> getAllCategories() {
+    public List<Category> getAllCategories() {
         return logicLayer.getAllCategories();
     }
 

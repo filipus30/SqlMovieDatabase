@@ -5,13 +5,17 @@
  */
 package sqlmoviedatabase.bll;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import sqlmoviedatabase.be.Category;
 import sqlmoviedatabase.be.Movie;
 import sqlmoviedatabase.bll.util.TimeConverter;
+import sqlmoviedatabase.dal.CategoryDAO;
 import sqlmoviedatabase.dal.DalController;
 
 /**
@@ -21,6 +25,7 @@ import sqlmoviedatabase.dal.DalController;
 
 public class LogicManager implements LogicFacade{
     DalController dc = new DalController();
+    CategoryDAO cd = new CategoryDAO();
     private final TimeConverter timeConverter;
     
         public LogicManager() {
@@ -93,10 +98,12 @@ public class LogicManager implements LogicFacade{
         return timeConverter.format_To_Sec(formatString);
     }
 
+   
+  
     @Override
-    public List<String> getAllCategories() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public List<Category> getAllCategories() {
+            return  cd.getAllCategories();
+      }
 
     @Override
     public void createCategory(String name) {

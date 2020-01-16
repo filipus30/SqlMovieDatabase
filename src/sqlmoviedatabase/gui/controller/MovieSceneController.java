@@ -153,9 +153,9 @@ public class MovieSceneController implements Initializable {
 
         //sets the existing info of the selected song.
         txtField_title.setText(movieToEdit.getTitle());
-        txtField_time.setText(movieToEdit.getStringTime());
-        txtField_filePath.setText(movieToEdit.getPath());
-        choiceBox_genre.setValue(movieToEdit.getGenre());
+        txtField_time.setText(movieToEdit.getDuration());
+        txtField_filePath.setText(movieToEdit.getFileLocation());
+        choiceBox_genre.setValue(movieToEdit.getCategory());
     }
 
     @FXML

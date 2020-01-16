@@ -6,6 +6,7 @@
 package sqlmoviedatabase.bll;
 
 import java.util.List;
+import sqlmoviedatabase.be.Category;
 import sqlmoviedatabase.be.Movie;
 
 /**
@@ -45,7 +46,7 @@ public interface LogicFacade {
     int format_To_Sec(String formatString);
     
 
-    List<String> getAllCategories();
+    List<Category> getAllCategories();
 
     
     void createCategory(String name);
