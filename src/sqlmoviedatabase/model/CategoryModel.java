@@ -6,6 +6,10 @@
 package sqlmoviedatabase.model;
 
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import sqlmoviedatabase.be.Category;
+import sqlmoviedatabase.be.Movie;
 import sqlmoviedatabase.bll.LogicFacade;
 import sqlmoviedatabase.bll.LogicManager;
 
@@ -15,6 +19,7 @@ import sqlmoviedatabase.bll.LogicManager;
  */
 public class CategoryModel {
     
+    private ObservableList<Category> categorylist;
     private final LogicFacade logicLayer;
 
     /**
@@ -23,13 +28,23 @@ public class CategoryModel {
     public CategoryModel() {
         logicLayer = (LogicFacade) new LogicManager();
     }
+    
+        public ObservableList<Category> getcategorylist() {
+        List<Category> allCategories = logicLayer.getAllCategories();
+        for (Category category1 : allCategories) {
+            //Save the converted time in the hh:mm:ss format before adding the song to an ObservableList.
+          //category1.setStringTime(sec_To_Format(category1.getDuration()));
+        }
+        categorylist = FXCollections.observableArrayList(allCategories);
+        return categorylist;
+    }
 
     /**
      * Gets all genres from the database.
      *
      * @return A String list of all genres.
      */
-    public List<String> getAllCategories() {
+    public List<Category> getAllCategories() {
         return logicLayer.getAllCategories();
     }
 
@@ -39,15 +54,21 @@ public class CategoryModel {
      * @param name The name of the newly created genre.
      */
     public void createCategory(String name) {
-        logicLayer.createCategory(name);
+        Category category = new Category(name);
+        logicLayer.createCategory(category);
+        //allPlaylists.add(playlist);
+    }
+    
+    public void updateCategory(Category category, String editedName) {
+       logicLayer.updateCategory(category, editedName);
     }
 
-    /**
-     * Deletes a genre.
-     *
-     * @param name The name of the genre to be deleted.
-     */
-    public void deleteCategory(String name) {
-        logicLayer.deleteCategory(name);
+    public void deleteCategory(Category category) {
+       logicLayer.deleteCategory(category);
     }
+
+    public void deleteCategory(String name) {
+       logicLayer.deleteCategory(name);
+    }
+        
 }

@@ -79,8 +79,7 @@ public class MovieSceneController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        
+
     }
     @FXML
     private void handle_createVisible(ActionEvent event) {
@@ -133,7 +132,7 @@ public class MovieSceneController implements Initializable {
              choiceBox_genre.getSelectionModel().getSelectedItem(),
               txtField_filePath.getText());
         } else {
-            movieModel.updateMovie(movieToEdit,
+            movieModel.UpdateMovie(movieToEdit,
             txtField_title.getText().trim(),
             choiceBox_genre.getSelectionModel().getSelectedItem(),
             movieModel.format_To_Sec(txtField_time.getText()),
@@ -153,9 +152,9 @@ public class MovieSceneController implements Initializable {
 
         //sets the existing info of the selected song.
         txtField_title.setText(movieToEdit.getTitle());
-        txtField_time.setText(movieToEdit.getStringTime());
-        txtField_filePath.setText(movieToEdit.getPath());
-        choiceBox_genre.setValue(movieToEdit.getGenre());
+        txtField_time.setText(movieToEdit.getDuration());
+        txtField_filePath.setText(movieToEdit.getFileLocation());
+        choiceBox_genre.setValue(movieToEdit.getCategory());
     }
 
     @FXML
@@ -177,6 +176,10 @@ public class MovieSceneController implements Initializable {
         
     public void setContr(PrimaryController pCon) {
         this.pCon = pCon;
+    }
+    
+        public void refreshLibrary() {
+        pCon.refreshLibrary();
     }
 
     @FXML

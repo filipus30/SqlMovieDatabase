@@ -101,7 +101,7 @@ public class MovieDAO {
         return movies;//return the list of movies.
     }
 
-}
+
 
     
     public Movie UpdateMovie (Movie movie, String title, int personalRating, float imdbRating, String lastView, String fileLocation, String duration, String categories){
