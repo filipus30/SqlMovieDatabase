@@ -6,6 +6,7 @@
 package sqlmoviedatabase.dal;
 
 import java.util.List;
+import sqlmoviedatabase.be.Category;
 import sqlmoviedatabase.be.Movie;
 
 /**
@@ -25,6 +26,7 @@ public interface DBFacade {
 
     List<Movie> getAllMovie();
 
+    Category createCategory(String name);
 
 
     List<String> getAllGenres();

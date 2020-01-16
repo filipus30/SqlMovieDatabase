@@ -37,6 +37,7 @@ import sqlmoviedatabase.be.Category;
 import sqlmoviedatabase.be.Movie;
 import sqlmoviedatabase.bll.LogicManager;
 import sqlmoviedatabase.dal.MovieDAO;
+import sqlmoviedatabase.model.MainModel;
 
 
 
@@ -85,9 +86,12 @@ public class PrimaryController implements Initializable {
     private Movie movie;
     @FXML
     private Button btn_play;
-    
+    private MainModel model;
     private MediaPlayer mediaPlayer;
-
+    public PrimaryController()
+    {
+         model = MainModel.GetInstance(); 
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         settingTableViews();
@@ -172,7 +176,8 @@ public class PrimaryController implements Initializable {
     }
     @FXML
     private void handle_editCategory(ActionEvent event) throws IOException {
-        
+         model.setEditingTrue();
+         model.setCategory(categories.getSelectionModel().getSelectedItem());
         Parent root;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/sqlmoviedatabase/gui/CategoryScene.fxml"));
         root = (Parent) fxmlLoader.load();
@@ -205,7 +210,7 @@ public class PrimaryController implements Initializable {
 
     @FXML
     private void handle_deleteCategory(ActionEvent event) throws IOException {
-
+        model.setCategory(categories.getSelectionModel().getSelectedItem());
         Parent root;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/sqlmoviedatabase/gui/DeleteCategoryScene.fxml"));
         root = (Parent) fxmlLoader.load();

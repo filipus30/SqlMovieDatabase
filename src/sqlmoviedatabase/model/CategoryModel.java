@@ -39,8 +39,8 @@ public class CategoryModel {
      *
      * @param name The name of the newly created genre.
      */
-    public void createCategory(String name) {
-        logicLayer.createCategory(name);
+    public Category createCategory(String name) {
+       return logicLayer.createCategory(name);
     }
 
     /**

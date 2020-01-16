@@ -49,8 +49,8 @@ public interface LogicFacade {
     List<Category> getAllCategories();
 
     
-    void createCategory(String name);
+    Category createCategory(String name);
     
     void deleteCategory(String name);
-    
+    void editCategory(String name,String newname);
 }

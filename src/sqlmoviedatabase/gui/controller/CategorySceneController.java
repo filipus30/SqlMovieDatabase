@@ -13,6 +13,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import sqlmoviedatabase.bll.LogicManager;
+import sqlmoviedatabase.model.MainModel;
 
 /**
  * FXML Controller class
@@ -27,8 +29,12 @@ public class CategorySceneController implements Initializable {
     private Button btn_cancel;
     @FXML
     private Button btn_save;
-    
-    
+    private MainModel model;
+    public CategorySceneController()
+    {
+           model = MainModel.GetInstance(); 
+    }
+    LogicManager lm = new LogicManager();
     private PrimaryController pCon;
     /**
      * Initializes the controller class.
@@ -40,6 +46,14 @@ public class CategorySceneController implements Initializable {
 
     @FXML
     private void handle_saveCategory(ActionEvent event) {
+         if(model.getEditing())
+         {
+         lm.editCategory(model.getCategory().getCatname(),txtField_Category.getText());
+         model.setEditingFalse();
+         }
+          else{
+                   lm.createCategory(txtField_Category.getText());
+              }
         Stage stage;
         stage = (Stage) btn_save.getScene().getWindow();
         stage.close();
