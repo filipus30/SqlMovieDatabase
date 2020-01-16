@@ -237,7 +237,7 @@ public class PrimaryController implements Initializable {
     @FXML
     private void handle_playMovie(ActionEvent event) throws IOException {
         
-        Desktop.getDesktop().open(new File("C:\\Users\\PC\\Pictures\\beat.mp4"));
+        Desktop.getDesktop().open(new File(tbv_Library.getSelectionModel().getSelectedItem().getFileLocation()));
    }
 
    
