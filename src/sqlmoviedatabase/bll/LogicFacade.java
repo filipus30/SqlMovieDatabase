@@ -43,4 +43,13 @@ public interface LogicFacade {
 
     
     int format_To_Sec(String formatString);
+    
+
+    List<String> getAllCategories();
+
+    
+    void createCategory(String name);
+    
+    void deleteCategory(String name);
+    
 }

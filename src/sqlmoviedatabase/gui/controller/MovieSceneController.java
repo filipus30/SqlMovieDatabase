@@ -22,6 +22,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import sqlmoviedatabase.be.Movie;
+import sqlmoviedatabase.model.CategoryModel;
 import sqlmoviedatabase.model.GenreModel;
 import sqlmoviedatabase.model.MovieModel;
 
@@ -53,16 +54,25 @@ public class MovieSceneController implements Initializable {
     @FXML
     private TextField txt_createGenre;
     @FXML
-    private ComboBox<?> comboBox_rating;
-    @FXML
     private ChoiceBox<String> choiceBox_genre;
     
     private boolean edit;
     private Movie movieToEdit;
     private MovieModel movieModel;
     private GenreModel genreModel;
+    private CategoryModel categoryModel;
     private PrimaryController pCon;
     private MovieSceneController conMovie;
+    @FXML
+    private ChoiceBox<?> choiceBox_category;
+    @FXML
+    private Button btn_createVisible1;
+    @FXML
+    private Button btn_deleteCategory;
+    @FXML
+    private TextField txt_createCategory;
+    @FXML
+    private Button btn_createCategory;
 
     /**
      * Initializes the controller class.
@@ -167,6 +177,28 @@ public class MovieSceneController implements Initializable {
         
     public void setContr(PrimaryController pCon) {
         this.pCon = pCon;
+    }
+
+    @FXML
+    private void handle_createVisible1(ActionEvent event) {
+        txt_createCategory.setVisible(true);
+        btn_createCategory.setVisible(true);
+    }
+
+    @FXML
+    private void handle_deleteCategory(ActionEvent event) {
+        String name = (String) choiceBox_category.getSelectionModel().getSelectedItem();
+        categoryModel.deleteCategory(name);
+        choiceBox_category.getItems().remove(name);
+    }
+
+    @FXML
+    private void handle_createCategory(ActionEvent event) {
+        String name = txt_createCategory.getText().trim();
+        categoryModel.createCategory(name);
+        //choiceBox_category.getItems().add(name);
+        txt_createCategory.setVisible(false); //makes the button invisible.
+        btn_createCategory.setVisible(false); //makes the button invisible.
     }
 
 

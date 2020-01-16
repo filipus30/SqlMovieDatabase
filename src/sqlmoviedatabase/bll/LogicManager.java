@@ -49,6 +49,7 @@ public class LogicManager implements LogicFacade{
 
         return filtered;
     }
+     
 
     @Override
     public Movie createMovie(String title, int time, String path, String genre) {
@@ -88,6 +89,21 @@ public class LogicManager implements LogicFacade{
     @Override
     public int format_To_Sec(String formatString) {
         return timeConverter.format_To_Sec(formatString);
+    }
+
+    @Override
+    public List<String> getAllCategories() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void createCategory(String name) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void deleteCategory(String name) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
      
 }

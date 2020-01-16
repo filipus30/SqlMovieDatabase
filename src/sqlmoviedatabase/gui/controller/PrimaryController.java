@@ -216,7 +216,11 @@ public class PrimaryController implements Initializable {
     @FXML
     private void handle_playMovie(ActionEvent event) throws IOException {
         
-        Desktop.getDesktop().open(new File("C:\\Users\\PC\\Pictures\\trihard.mp4"));
+        Desktop.getDesktop().open(new File("C:\\Users\\PC\\Pictures\\beat.mp4"));
    }
+
+    @FXML
+    private void handle_Filter(ActionEvent event) {
+    }
     
 }
