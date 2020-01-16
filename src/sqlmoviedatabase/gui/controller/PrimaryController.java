@@ -40,6 +40,9 @@ import sqlmoviedatabase.bll.LogicManager;
 import sqlmoviedatabase.dal.MovieDAO;
 import sqlmoviedatabase.model.CategoryModel;
 
+import sqlmoviedatabase.model.MainModel;
+
+
 
 
 /**
@@ -92,6 +95,19 @@ public class PrimaryController implements Initializable {
     
     @FXML
     private Button btn_play;
+
+    private MainModel model;
+    private boolean searching = false;
+    private boolean catselected = false;
+    private boolean ratselected = false;
+    private boolean textselected = false;
+    private MediaPlayer mediaPlayer;
+    @FXML
+    private Button button_search;
+    public PrimaryController()
+    {
+         model = MainModel.GetInstance(); 
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -190,8 +206,9 @@ public class PrimaryController implements Initializable {
     }
     @FXML
     private void handle_editCategory(ActionEvent event) throws IOException {
-        Category selectedCategory = categories.getSelectionModel().getSelectedItem();
 
+         model.setEditingTrue();
+         model.setCategory(categories.getSelectionModel().getSelectedItem());
         Parent root;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/sqlmoviedatabase/gui/CategoryScene.fxml"));
         root = (Parent) fxmlLoader.load();
@@ -224,7 +241,7 @@ public class PrimaryController implements Initializable {
 
     @FXML
     private void handle_deleteCategory(ActionEvent event) throws IOException {
-
+        model.setCategory(categories.getSelectionModel().getSelectedItem());
         Parent root;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/sqlmoviedatabase/gui/DeleteCategoryScene.fxml"));
         root = (Parent) fxmlLoader.load();
@@ -239,34 +256,74 @@ public class PrimaryController implements Initializable {
         categoryStage.show();
     }
         
-        public void refreshCategories() {
-        categories.getItems().clear();
-        categories.setItems(categoryModel.getcategorylist());
-    }
 
-    
-    @FXML
-    private void handle_Search(ActionEvent event) {
-       List<Movie> movielist = FXCollections.observableArrayList(lm.getAllMovies());
-       
-       tbv_Library.setItems((ObservableList<Movie>) lm.search(movielist,searchbar.getText(),categories.getSelectionModel().getSelectedItem().getCatname()));
-    }
-    
-    @FXML
-    private void handle_Categories(ActionEvent event) {
-        List<Movie> movielist = FXCollections.observableArrayList(lm.getAllMovies());
-       tbv_Library.setItems((ObservableList<Movie>) lm.searchcat(movielist,categories.getSelectionModel().getSelectedItem().getCatname()));
-    }
+
+  
 
     @FXML
     private void handle_playMovie(ActionEvent event) throws IOException {
         
-        Desktop.getDesktop().open(new File("C:\\Users\\PC\\Pictures\\beat.mp4"));
+        Desktop.getDesktop().open(new File(tbv_Library.getSelectionModel().getSelectedItem().getFileLocation()));
    }
 
+   
+
     @FXML
-    private void handle_Filter(ActionEvent event) {
+    private void handle_search(ActionEvent event) {
+       ObservableList<Movie> movielist = FXCollections.observableArrayList(lm.getAllMovies());
+        if (searching==false)
+        { button_search.setText("reset");
+        if(textselected == false && catselected ==false && ratselected == false)
+                System.out.println("bad");
+        tbv_Library.setItems(movielist);
+       if(catselected)
+       model.setMovieList(lm.searchcat(lm.getAllMovies(),categories.getSelectionModel().getSelectedItem().getCatname()));
+       if(ratselected)
+       model.setMovieList(lm.searchrat(model.getMovieList(),filter.getValue()));
+       if(textselected)
+       model.setMovieList(lm.search(model.getMovieList(),searchbar.getText()));   
+       tbv_Library.setItems((ObservableList<Movie>) model.getMovieList()); 
+       searching = true; 
+        searchbar.setDisable(true);}
+        else
+        {
+            //reset
+            searchbar.clear();
+            filter.setValue(null);
+            categories.setValue(null);
+            searching = false;
+            textselected =false;
+            catselected = false;
+            ratselected = false;
+            button_search.setText("Search!");
+            searching = false;
+            model.setMovieList(lm.getAllMovies());
+            searchbar.setDisable(false);
+            tbv_Library.setItems(movielist);
+        }
+    }
+
+    @FXML
+    private void handle_textsearch(ActionEvent event) {
+        textselected = true;
+    }
+
+    @FXML
+    private void handle_filter(ActionEvent event) {
+        ratselected = true;
     }
 
 
-}
+    @FXML
+    private void handle_categories(ActionEvent event) {
+        catselected = true;
+    }
+
+    @FXML
+    private void handle_textsearch(KeyEvent event) {
+    
+        textselected = true;}
+    }
+
+  
+

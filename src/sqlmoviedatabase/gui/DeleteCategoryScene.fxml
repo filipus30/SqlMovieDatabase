@@ -7,14 +7,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="238.0" prefWidth="437.0" styleClass="greyBG" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sqlmoviedatabase.gui.controller.DeleteCategorySceneController">
+<AnchorPane id="AnchorPane" prefHeight="238.0" prefWidth="437.0" styleClass="greyBG" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sqlmoviedatabase.gui.controller.DeleteCategorySceneController">
    <children>
       <Label layoutX="77.0" layoutY="77.0" prefHeight="58.0" prefWidth="308.0" text="Want to delete selected category?" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="lbl_title" layoutX="151.0" layoutY="145.0" text="&quot;name of category&quot;" textFill="WHITE">
+
+      <Label fx:id="nameofcategory" layoutX="151.0" layoutY="145.0" text="&quot;name of category&quot;" textFill="WHITE">
+
          <font>
             <Font name="Arial" size="16.0" />
          </font>

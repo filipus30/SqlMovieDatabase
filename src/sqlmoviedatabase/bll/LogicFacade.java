@@ -49,10 +49,13 @@ public interface LogicFacade {
     void createCategory(Category category);
     
 
-    void deleteCategory(Category category);
+    Category createCategory(String name);
+
     
     Category updateCategory(Category category, String editedName);
 
     void deleteCategory(String name);
+
+    void editCategory(String name,String newname);
 
 }

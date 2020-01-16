@@ -6,10 +6,12 @@
 package sqlmoviedatabase.model;
 
 import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import sqlmoviedatabase.be.Category;
 import sqlmoviedatabase.be.Movie;
+import sqlmoviedatabase.be.Category;
 import sqlmoviedatabase.bll.LogicFacade;
 import sqlmoviedatabase.bll.LogicManager;
 
@@ -53,18 +55,10 @@ public class CategoryModel {
      *
      * @param name The name of the newly created genre.
      */
-    public void createCategory(String name) {
-        Category category = new Category(name);
-        logicLayer.createCategory(category);
-        //allPlaylists.add(playlist);
-    }
-    
-    public void updateCategory(Category category, String editedName) {
-       logicLayer.updateCategory(category, editedName);
-    }
 
-    public void deleteCategory(Category category) {
-       logicLayer.deleteCategory(category);
+    public Category createCategory(String name) {
+       return logicLayer.createCategory(name);
+
     }
 
     public void deleteCategory(String name) {

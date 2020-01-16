@@ -87,7 +87,9 @@ public class CategoryDAO {
             Logger.getLogger(GenreDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-     public void updateCategory(String name,String newname) {
+
+     public void EditCategory(String name,String newname) {
+
         try ( //Get a connection to the database.
             Connection con = ds.getConnection()) {
             String sql = "UPDATE Categories SET CatName=? WHERE CatName=?;";
@@ -106,15 +108,5 @@ public class CategoryDAO {
         }
     }
 
-    void createCategory(Category category) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    Category updateCategory(Category category, String editedName) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    void deleteCategory(Category category) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
+

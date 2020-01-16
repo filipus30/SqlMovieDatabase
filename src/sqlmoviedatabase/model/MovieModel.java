@@ -31,7 +31,9 @@ public final class MovieModel  {
         public ObservableList<Movie> getmovielist() {
         List<Movie> allMovies = logicManager.getAllMovies();
         for (Movie movie1 : allMovies) {
-            //Save the converted time in the hh:mm:ss format before adding the  to an ObservableList.
+
+            //Save the converted time in the hh:mm:ss format before adding the song to an ObservableList.
+
           // movie1.setStringTime(sec_To_Format(movie1.getDuration()));
         }
         movielist = FXCollections.observableArrayList(allMovies);

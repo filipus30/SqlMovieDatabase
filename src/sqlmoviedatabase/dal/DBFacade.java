@@ -28,7 +28,9 @@ public interface DBFacade {
      List<Category> getAllCategories();
 
 
-     Category updateCategory(Category category, String editedName);
+
+    Category createCategory(String name);
+
 
 
      void deleteCategory(Category category);

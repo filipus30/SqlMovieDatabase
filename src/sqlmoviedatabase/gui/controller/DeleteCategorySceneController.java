@@ -15,6 +15,8 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import sqlmoviedatabase.be.Category;
 import sqlmoviedatabase.model.CategoryModel;
+import sqlmoviedatabase.bll.LogicManager;
+import sqlmoviedatabase.model.MainModel;
 
 /**
  * FXML Controller class
@@ -32,30 +34,36 @@ public class DeleteCategorySceneController implements Initializable {
     private Category selectedCategory;
     private PrimaryController pCon;
     @FXML
-    private Label lbl_title;
-    
-    /**
-     * Initializes the controller class.
-     */
+
+    private Label nameofcategory;
+    private MainModel model;
+    LogicManager lm = new LogicManager();
+   public DeleteCategorySceneController(){
+         model = MainModel.GetInstance(); 
+   }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        categoryModel = new CategoryModel();
+      nameofcategory.setText(model.getCategory().getCatname());
+    
+
     }    
 
     @FXML
     private void handle_confirmCategory(ActionEvent event) {
-        categoryModel.deleteCategory(selectedCategory);
 
-        refreshCategories();
-        Stage stage;
-        stage = (Stage) btn_confirmCategory.getScene().getWindow();
+            System.out.println(model.getCategory().getCatname());
+        lm.deleteCategory(model.getCategory().getCatname());
+         Stage stage = (Stage) btn_confirmCategory.getScene().getWindow();
+
         stage.close();
     }
 
     @FXML
-    private void handle_closeScene(ActionEvent event) {     
-       Stage stage = (Stage) btn_cancel.getScene().getWindow();
-       stage.close();
+
+    private void handle_closeScene(ActionEvent event) {
+         Stage stage = (Stage) btn_cancel.getScene().getWindow();
+        stage.close();
+
     }
     
     public void setDeleteCategoryLabel(Category category) {

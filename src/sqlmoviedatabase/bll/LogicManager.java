@@ -16,9 +16,11 @@ import sqlmoviedatabase.be.Category;
 import sqlmoviedatabase.be.Movie;
 import sqlmoviedatabase.bll.util.TimeConverter;
 import sqlmoviedatabase.dal.CategoryDAO;
+
 import sqlmoviedatabase.dal.DBFacade;
 import sqlmoviedatabase.dal.DBManager;
 import sqlmoviedatabase.dal.DalController;
+import sqlmoviedatabase.dal.MovieDAO;
 
 /**
  *
@@ -28,6 +30,9 @@ import sqlmoviedatabase.dal.DalController;
 public class LogicManager implements LogicFacade{
     DalController dc = new DalController();
     CategoryDAO cd = new CategoryDAO();
+
+    MovieDAO md = new MovieDAO();
+
     private final TimeConverter timeConverter;
     private final DBFacade dbManager;
    
@@ -51,7 +56,9 @@ public LogicManager() {
         }
 
         for (Movie movie : searchBase) {
-            if (movie.getTitle().toLowerCase().contains(query.toLowerCase()) && movie.getCategory().toLowerCase().contains(cat.toLowerCase()))
+
+            if (movie.getTitle().toLowerCase().contains(query.toLowerCase()))
+
             {
                 filtered.add(movie);
             }
@@ -77,7 +84,26 @@ public LogicManager() {
         }
 
         return filtered;
-       }
+
+    }
+       
+        public List<Movie> searchrat(List<Movie> searchBase, int rate) {
+          
+       List<Movie> filtered = FXCollections.observableArrayList();
+
+        for (Movie movie : searchBase) {
+            if (movie.getImdb_Rating() >= rate ) //|| movie.getCategory().toLowerCase().contains(query.toLowerCase())
+            {
+                filtered.add(movie);
+            }
+        }
+
+        return filtered;
+    }
+    @Override
+    public Movie createMovie(String title, int time, String path, String genre) {
+      return md.createMovie(time, title, time, time, path, path, genre, path);
+    }
 
 
     @Override
@@ -121,21 +147,38 @@ public LogicManager() {
         return timeConverter.format_To_Sec(formatString);
     }
 
+   
+  
     @Override
     public List<Category> getAllCategories() {
-        return dbManager.getAllCategories();
-    }
-
-
-    @Override
-    public Category updateCategory(Category category, String editedName) {
-        return dbManager.updateCategory(category, editedName);
-    }
+      return  cd.getAllCategories();
+      }
 
     @Override
     public Movie createMovie(String title, int time, String genre, String path) {
       return dbManager.createMovie(title, time, path, genre);
     }
+
+            
+
+   
+    @Override
+    public Category createCategory(String name) {
+      return cd.createCategory(name);
+    }
+
+    @Override
+    public void deleteCategory(String name) {
+       cd.deleteCategory(name);
+    }
+    @Override
+    public void  editCategory(String name,String newname)
+    {
+        cd.EditCategory(name,newname);
+    }
+    
+     
+
 
     @Override
     public void createCategory(Category category) {

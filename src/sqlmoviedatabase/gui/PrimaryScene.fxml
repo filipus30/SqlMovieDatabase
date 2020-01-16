@@ -14,7 +14,9 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="736.0" prefWidth="1226.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sqlmoviedatabase.gui.controller.PrimaryController">
+
+<AnchorPane id="AnchorPane" prefHeight="736.0" prefWidth="1226.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sqlmoviedatabase.gui.controller.PrimaryController">
+
 
 
    <children>
@@ -35,8 +37,8 @@
                     </columns>
                   </TableView>
 
-                  <TextField fx:id="searchbar" layoutX="212.0" layoutY="29.0" onAction="#handle_Search" prefHeight="31.0" prefWidth="715.0" promptText="Search..." />
-                  <ComboBox fx:id="filter" layoutX="1018.0" layoutY="29.0" onAction="#handle_Filter" prefWidth="150.0" promptText="Filter by rating" styleClass="lblFlow" stylesheets="@css/style.css" />
+                  <TextField fx:id="searchbar" layoutX="212.0" layoutY="29.0" onAction="#handle_textsearch" onKeyTyped="#handle_textsearch" prefHeight="31.0" prefWidth="715.0" promptText="Search..." />
+                  <ComboBox fx:id="filter" layoutX="1018.0" layoutY="29.0" onAction="#handle_filter" prefWidth="150.0" promptText="Filter by rating" styleClass="lblFlow" stylesheets="@css/style.css" />
 
                   <Pane layoutX="210.0" layoutY="660.0" prefHeight="45.0" prefWidth="252.0" style="-fx-background-color: #00FFFF#00FFFF;" stylesheets="@css/style.css">
 
@@ -48,11 +50,6 @@
                         </Button>
                      </children>
                   </Pane>
-                  <ImageView fitHeight="41.0" fitWidth="28.0" layoutX="948.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@assets/icons8-search-30.png" />
-                     </image>
-                  </ImageView>
                   <Pane layoutX="462.0" layoutY="660.0" prefHeight="45.0" prefWidth="252.0" style="-fx-background-color: #00FFFF#00FFFF;" stylesheets="@css/style.css">
                      <children>
                         <Button fx:id="btn_edit" layoutX="11.0" layoutY="6.0" mnemonicParsing="false" onAction="#handle_editMovie" prefHeight="31.0" prefWidth="227.0" text="Edit Movie">
@@ -72,7 +69,7 @@
                      </children>
                   </Pane>
                   <ListView layoutX="10.0" layoutY="115.0" prefHeight="605.0" prefWidth="190.0" style="-fx-background-color: #121212;" />
-                  <ComboBox fx:id="categories" layoutX="23.0" layoutY="128.0" onAction="#handle_Categories" prefHeight="31.0" prefWidth="165.0" promptText="     Categories" styleClass="lblFlow" stylesheets="@css/style.css" />
+                  <ComboBox fx:id="categories" layoutX="23.0" layoutY="128.0" onAction="#handle_categories" prefHeight="31.0" prefWidth="165.0" promptText="     Categories" styleClass="lblFlow" stylesheets="@css/style.css" />
                   <Button fx:id="btn_editCategory" layoutX="78.0" layoutY="57.0" mnemonicParsing="false" onAction="#handle_editCategory" style="-fx-background-color: #121212;">
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
@@ -109,6 +106,7 @@
                         </Button>
                      </children>
                   </Pane>
+                  <Button fx:id="button_search" layoutX="940.0" layoutY="32.0" mnemonicParsing="false" onAction="#handle_search" prefHeight="26.0" prefWidth="55.0" text="Search!" />
                </children>
             </AnchorPane>
          </children>
