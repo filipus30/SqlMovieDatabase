@@ -14,7 +14,7 @@
             <Font name="Arial Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="151.0" layoutY="145.0" text="&quot;name of category&quot;" textFill="WHITE">
+      <Label fx:id="lbl_title" layoutX="151.0" layoutY="145.0" text="&quot;name of category&quot;" textFill="WHITE">
          <font>
             <Font name="Arial" size="16.0" />
          </font>

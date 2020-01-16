@@ -1,17 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package sqlmoviedatabase.dal;
 
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import sqlmoviedatabase.be.Category;
 import sqlmoviedatabase.be.Movie;
 
@@ -30,7 +29,7 @@ public class CategoryDAO {
                  ds.setPortNumber(1433);
                  ds.setServerName("10.176.111.31");
     }
-    public List<Category> getAllCategories() throws SQLException
+    public List<Category> getAllCategories() 
     { 
         List<Category> categories = new ArrayList();//create a list to store all our categories
         try (Connection con = ds.getConnection()){
@@ -46,9 +45,76 @@ public class CategoryDAO {
                categories.add(p);//Add the category to the list.
             }
             
-        }
+        } catch (SQLException ex) {
+             Logger.getLogger(CategoryDAO.class.getName()).log(Level.SEVERE, null, ex);
+         }
         
         
         return categories;//return the list of categories.
+    }
+    
+    public Category createCategory(String name) {
+        try ( //Get a connection to the database.
+            Connection con = ds.getConnection()) {
+            String sql = "INSERT INTO CATEGORIES VALUES (?)";
+            //Create a prepared statement.
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            //Set parameter value.
+            pstmt.setString(1, name);
+            //Execute SQL query.
+            pstmt.executeUpdate();
+
+        } catch (SQLServerException ex) {
+            Logger.getLogger(GenreDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(GenreDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return new Category(name);
+    }
+    public void deleteCategory(String name) {
+        try ( //Get a connection to the database.
+            Connection con = ds.getConnection()) {
+            //Create a prepared statement.
+            String sql = "DELETE FROM CATEGORIES WHERE CatName = ?";
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            //Set parameter values.
+            pstmt.setString(1, name);
+            //Execute SQL query.
+            pstmt.executeUpdate();
+        } catch (SQLServerException ex) {
+            Logger.getLogger(GenreDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(GenreDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+     public void updateCategory(String name,String newname) {
+        try ( //Get a connection to the database.
+            Connection con = ds.getConnection()) {
+            String sql = "UPDATE Categories SET CatName=? WHERE CatName=?;";
+            //Create a prepared statement.
+            PreparedStatement pstmt = con.prepareStatement(sql);
+            //Set parameter value.
+            pstmt.setString(1, newname);
+            pstmt.setString(2,name);
+            //Execute SQL query.
+            pstmt.executeUpdate();
+
+        } catch (SQLServerException ex) {
+            Logger.getLogger(GenreDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(GenreDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    void createCategory(Category category) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    Category updateCategory(Category category, String editedName) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void deleteCategory(Category category) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

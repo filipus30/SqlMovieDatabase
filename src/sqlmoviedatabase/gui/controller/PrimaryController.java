@@ -33,10 +33,12 @@ import sqlmoviedatabase.bll.LogicManager;
 import sqlmoviedatabase.dal.MovieDAO;
 import sqlmoviedatabase.model.MovieModel;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import sqlmoviedatabase.be.Category;
 import sqlmoviedatabase.be.Movie;
 import sqlmoviedatabase.bll.LogicManager;
 import sqlmoviedatabase.dal.MovieDAO;
+import sqlmoviedatabase.model.CategoryModel;
 
 
 
@@ -80,13 +82,16 @@ public class PrimaryController implements Initializable {
     private TableColumn<Movie,String> col_userRating;
     @FXML
     private Button btn_editCategory;
-    LogicManager lm = new LogicManager();
-    private MovieModel movieModel;
+    
     private Movie movie;
+    private Category category;
+    private MovieModel movieModel;
+    private CategoryModel categoryModel;   
+    LogicManager lm = new LogicManager();
+    private MediaPlayer mediaPlayer;
+    
     @FXML
     private Button btn_play;
-    
-    private MediaPlayer mediaPlayer;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -97,6 +102,7 @@ public class PrimaryController implements Initializable {
     }
      private void settingTableViews() {
       movieModel = new MovieModel();
+      categoryModel = new CategoryModel();
       
      ObservableList<Movie> movielist = FXCollections.observableArrayList(lm.getAllMovies());
      
@@ -114,7 +120,7 @@ public class PrimaryController implements Initializable {
 
      col_movieGenres.setCellValueFactory(new PropertyValueFactory ("Category"));
 
-   //  tbv_Library.setItems(movielist);
+     tbv_Library.setItems(movielist);
      categories.setItems(categorylist);
 
 
@@ -128,12 +134,18 @@ public class PrimaryController implements Initializable {
         root1 = (Parent) fxmlLoader.load();
         fxmlLoader.<MovieSceneController>getController().setContr(this);
 
-        Stage songStage = new Stage();
-        Scene songScene = new Scene(root1);
+        Stage movieStage = new Stage();
+        Scene movieScene = new Scene(root1);
 
-        //songStage.initStyle(StageStyle.UNDECORATED);
-        songStage.setScene(songScene);
-        songStage.show();
+        //categoryStage.initStyle(StageStyle.UNDECORATED);
+        movieStage.setScene(movieScene);
+        movieStage.show();
+    }
+    
+    @FXML
+    private void handle_getMovie(MouseEvent event) {
+       movie = tbv_Library.getSelectionModel().getSelectedItem();
+
     }
 
     @FXML
@@ -145,7 +157,7 @@ public class PrimaryController implements Initializable {
         root = (Parent) fxmlLoader.load();
         MovieSceneController controller = (MovieSceneController) fxmlLoader.getController();
         controller.setContr(this);
-
+        controller.editMode(selectedMovie);
         Stage movieStage = new Stage();
         Scene movieScene = new Scene(root);
 
@@ -155,8 +167,8 @@ public class PrimaryController implements Initializable {
     }
     @FXML
     private void handle_removeMovie(ActionEvent event) throws IOException {
-        
         Movie selectedMovie = tbv_Library.getSelectionModel().getSelectedItem();
+        
         Parent root;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/sqlmoviedatabase/gui/DeleteMovieScene.fxml"));
         root = (Parent) fxmlLoader.load();
@@ -170,21 +182,28 @@ public class PrimaryController implements Initializable {
         movieStage.setScene(movieScene);
         movieStage.show();
     }
+    
+    
+    public void refreshLibrary() {
+         tbv_Library.getItems().clear();
+         tbv_Library.setItems(movieModel.getmovielist());
+    }
     @FXML
     private void handle_editCategory(ActionEvent event) throws IOException {
-        
+        Category selectedCategory = categories.getSelectionModel().getSelectedItem();
+
         Parent root;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/sqlmoviedatabase/gui/CategoryScene.fxml"));
         root = (Parent) fxmlLoader.load();
         CategorySceneController controller = (CategorySceneController) fxmlLoader.getController();
         controller.setContr(this);
-
-        Stage movieStage = new Stage();
-        Scene movieScene = new Scene(root);
+        controller.editMode(selectedCategory);
+        Stage categoryStage = new Stage();
+        Scene categoryScene = new Scene(root);
 
         //movieStage.initStyle(StageStyle.UNDECORATED);
-        movieStage.setScene(movieScene);
-        movieStage.show();
+        categoryStage.setScene(categoryScene);
+        categoryStage.show();
     }
     
     @FXML
@@ -195,12 +214,12 @@ public class PrimaryController implements Initializable {
         root1 = (Parent) fxmlLoader.load();
         fxmlLoader.<CategorySceneController>getController().setContr(this);
 
-        Stage songStage = new Stage();
-        Scene songScene = new Scene(root1);
+        Stage categoryStage = new Stage();
+        Scene categoryScene = new Scene(root1);
 
-        //songStage.initStyle(StageStyle.UNDECORATED);
-        songStage.setScene(songScene);
-        songStage.show();
+        //categoryStage.initStyle(StageStyle.UNDECORATED);
+        categoryStage.setScene(categoryScene);
+        categoryStage.show();
     }
 
     @FXML
@@ -212,23 +231,31 @@ public class PrimaryController implements Initializable {
         DeleteCategorySceneController controller = (DeleteCategorySceneController) fxmlLoader.getController();
         controller.setContr(this);
 
-        Stage movieStage = new Stage();
-        Scene movieScene = new Scene(root);
+        Stage categoryStage = new Stage();
+        Scene categoryScene = new Scene(root);
 
         //MovieStage.initStyle(StageStyle.UNDECORATED);
-        movieStage.setScene(movieScene);
-        movieStage.show();
+        categoryStage.setScene(categoryScene);
+        categoryStage.show();
     }
         
+        public void refreshCategories() {
+        categories.getItems().clear();
+        categories.setItems(categoryModel.getcategorylist());
+    }
+
+    
     @FXML
     private void handle_Search(ActionEvent event) {
        List<Movie> movielist = FXCollections.observableArrayList(lm.getAllMovies());
-       tbv_Library.setItems((ObservableList<Movie>) lm.search(movielist,searchbar.getText()));
+       
+       tbv_Library.setItems((ObservableList<Movie>) lm.search(movielist,searchbar.getText(),categories.getSelectionModel().getSelectedItem().getCatname()));
     }
     
     @FXML
     private void handle_Categories(ActionEvent event) {
-        
+        List<Movie> movielist = FXCollections.observableArrayList(lm.getAllMovies());
+       tbv_Library.setItems((ObservableList<Movie>) lm.searchcat(movielist,categories.getSelectionModel().getSelectedItem().getCatname()));
     }
 
     @FXML
@@ -241,11 +268,5 @@ public class PrimaryController implements Initializable {
     private void handle_Filter(ActionEvent event) {
     }
 
-    @FXML
-    private void handle_search(KeyEvent event) {
-             ObservableList<Movie> movielist = FXCollections.observableArrayList(lm.getAllMovies());
-       tbv_Library.setItems( lm.search(movielist,searchbar.getText()));
-       
-    }
-    
+
 }

@@ -14,7 +14,7 @@ import sqlmoviedatabase.be.Movie;
  */
 public class DalController {
 
-     private List<Movie> LibraryList;
+     private List<Movie> movielist;
      private MovieDAO moviedao;
 
     public DalController()
@@ -27,7 +27,7 @@ public class DalController {
      {
          try
          {
-        LibraryList = moviedao.getAllMovies();
+        movielist = moviedao.getAllMovies();
 
          }
           catch(SQLException e)
@@ -35,7 +35,7 @@ public class DalController {
               
           }
 
-         return LibraryList;
+         return movielist;
      }
      
      

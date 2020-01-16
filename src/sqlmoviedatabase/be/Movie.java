@@ -79,39 +79,13 @@ public class Movie {
     {
         this.Duration = duration;
     }
-    
 
-}
-
- public int getTime() {
-        return time;
-    }      
-  public void setStringTime(String stringTime) {
-  this.stringTime = stringTime;
-    }
-   public String getStringTime() {
-   return stringTime;
-    }
        @Override
     public String toString() {
         return Title;
     }
    
-       public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
-    
-        public String getGenre() {
-        return genre;
-    }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
+     
     
 
 }

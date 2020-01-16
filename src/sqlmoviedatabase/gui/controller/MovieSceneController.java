@@ -79,8 +79,16 @@ public class MovieSceneController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        
+        edit = false;
+        movieModel = new MovieModel();
+        genreModel = new GenreModel();
+
+        //Get all genres.
+        List<String> allGenres = genreModel.getAllGenres();
+        //Add all the genres to the ChoiceBox.
+        for (String allGenre : allGenres) {
+            choiceBox_genre.getItems().add(allGenre);
+        }
     }
     @FXML
     private void handle_createVisible(ActionEvent event) {
@@ -129,18 +137,18 @@ public class MovieSceneController implements Initializable {
     private void handle_saveMovie(ActionEvent event) {
         if (!edit) {
             movieModel.createMovie(txtField_title.getText().trim(),
-             movieModel.format_To_Sec(txtField_time.getText()),
-             choiceBox_genre.getSelectionModel().getSelectedItem(),
-              txtField_filePath.getText());
+                 movieModel.format_To_Sec(txtField_time.getText()),
+                 choiceBox_genre.getSelectionModel().getSelectedItem(),
+                 txtField_filePath.getText());
         } else {
-            movieModel.updateMovie(movieToEdit,
-            txtField_title.getText().trim(),
-            choiceBox_genre.getSelectionModel().getSelectedItem(),
-            movieModel.format_To_Sec(txtField_time.getText()),
-            txtField_filePath.getText());
+            movieModel.UpdateMovie(movieToEdit,
+                txtField_title.getText().trim(),
+                choiceBox_genre.getSelectionModel().getSelectedItem(),
+                movieModel.format_To_Sec(txtField_time.getText()),
+                txtField_filePath.getText());
         }
 
-
+        refreshLibrary();
 
         Stage stage;
         stage = (Stage) btn_save.getScene().getWindow();
@@ -151,11 +159,11 @@ public class MovieSceneController implements Initializable {
         edit = true;
         movieToEdit = selectedMovie;
 
-        //sets the existing info of the selected song.
+        //sets the existing info of the selected .
         txtField_title.setText(movieToEdit.getTitle());
-        txtField_time.setText(movieToEdit.getStringTime());
-        txtField_filePath.setText(movieToEdit.getPath());
-        choiceBox_genre.setValue(movieToEdit.getGenre());
+        txtField_time.setText(movieToEdit.getDuration());
+        txtField_filePath.setText(movieToEdit.getFileLocation());
+        choiceBox_genre.setValue(movieToEdit.getCategory());
     }
 
     @FXML
@@ -177,6 +185,10 @@ public class MovieSceneController implements Initializable {
         
     public void setContr(PrimaryController pCon) {
         this.pCon = pCon;
+    }
+    
+        public void refreshLibrary() {
+        pCon.refreshLibrary();
     }
 
     @FXML

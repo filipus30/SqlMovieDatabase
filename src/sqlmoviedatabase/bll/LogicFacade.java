@@ -6,6 +6,7 @@
 package sqlmoviedatabase.bll;
 
 import java.util.List;
+import sqlmoviedatabase.be.Category;
 import sqlmoviedatabase.be.Movie;
 
 /**
@@ -15,14 +16,12 @@ import sqlmoviedatabase.be.Movie;
 public interface LogicFacade {
     
     
-    Movie createMovie(String title, int time, String path, String genre);
-
-
+    Movie createMovie(String title, int time, String genre, String path);
+    
     List<Movie> getAllMovies();
 
-
-    Movie updateMovie(Movie movie, String editedTitle, String editedGenre, int editedTime, String editedPath);
-
+    Movie UpdateMovie(Movie movie, String editedTitle, String editedGenre, int editedTime, String editedPath);
+    
 
     void deleteMovie(Movie movie);
 
@@ -45,11 +44,15 @@ public interface LogicFacade {
     int format_To_Sec(String formatString);
     
 
-    List<String> getAllCategories();
+    List<Category> getAllCategories();
 
+    void createCategory(Category category);
     
-    void createCategory(String name);
+
+    void deleteCategory(Category category);
     
+    Category updateCategory(Category category, String editedName);
+
     void deleteCategory(String name);
-    
+
 }

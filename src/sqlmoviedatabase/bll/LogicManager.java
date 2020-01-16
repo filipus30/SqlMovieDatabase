@@ -5,13 +5,19 @@
  */
 package sqlmoviedatabase.bll;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import sqlmoviedatabase.be.Category;
 import sqlmoviedatabase.be.Movie;
 import sqlmoviedatabase.bll.util.TimeConverter;
+import sqlmoviedatabase.dal.CategoryDAO;
+import sqlmoviedatabase.dal.DBFacade;
+import sqlmoviedatabase.dal.DBManager;
 import sqlmoviedatabase.dal.DalController;
 
 /**
@@ -21,11 +27,14 @@ import sqlmoviedatabase.dal.DalController;
 
 public class LogicManager implements LogicFacade{
     DalController dc = new DalController();
+    CategoryDAO cd = new CategoryDAO();
     private final TimeConverter timeConverter;
+    private final DBFacade dbManager;
+   
+public LogicManager() {
     
-        public LogicManager() {
-            
-        timeConverter = new TimeConverter();
+    dbManager = (DBFacade) new DBManager(); 
+    timeConverter = new TimeConverter();
     }
     
     public List<Movie> getAllMovies()
@@ -33,7 +42,7 @@ public class LogicManager implements LogicFacade{
         return dc.getAllMovies();
     }
 
-     public List<Movie> search(List<Movie> searchBase, String query) {
+     public List<Movie> search(List<Movie> searchBase, String query, String cat) {
           
        List<Movie> filtered = FXCollections.observableArrayList();
 
@@ -42,7 +51,7 @@ public class LogicManager implements LogicFacade{
         }
 
         for (Movie movie : searchBase) {
-            if (movie.getTitle().toLowerCase().contains(query.toLowerCase() )) //|| movie.getCategory().toLowerCase().contains(query.toLowerCase())
+            if (movie.getTitle().toLowerCase().contains(query.toLowerCase()) && movie.getCategory().toLowerCase().contains(cat.toLowerCase()))
             {
                 filtered.add(movie);
             }
@@ -52,34 +61,53 @@ public class LogicManager implements LogicFacade{
     }
 
      
+       public List<Movie> searchcat(List<Movie> searchBase, String query) {
+          
+       List<Movie> filtered = FXCollections.observableArrayList();
+
+        if (query.isEmpty()) {
+            return searchBase;
+        }
+
+        for (Movie movie : searchBase) {
+            if (movie.getCategory().toLowerCase().contains(query.toLowerCase() )) //|| movie.getCategory().toLowerCase().contains(query.toLowerCase())
+            {
+                filtered.add(movie);
+            }
+        }
+
+        return filtered;
+       }
+
 
     @Override
-    public Movie createMovie(String title, int time, String path, String genre) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Movie updateMovie(Movie movie, String editedTitle, String editedGenre, int editedTime, String editedPath) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Movie UpdateMovie(Movie movie, String editedTitle, String editedGenre, int editedTime, String editedPath) {
+        dbManager.UpdateMovie(movie, editedTitle, editedGenre, editedTime, editedPath);
+        return null;
     }
 
     @Override
     public void deleteMovie(Movie movie) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       dbManager.deleteMovie(movie);
     }
 
     @Override
     public void createGenre(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        dbManager.createGenre(name);
     }
 
     @Override
     public List<String> getAllGenres() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return dbManager.getAllGenres();
     }
 
     @Override
     public void deleteGenre(String name) {
+        dbManager.deleteGenre(name);
+    }
+
+    @Override
+    public List<Movie> search(List<Movie> searchBase, String query) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -94,19 +122,33 @@ public class LogicManager implements LogicFacade{
     }
 
     @Override
-    public List<String> getAllCategories() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Category> getAllCategories() {
+        return dbManager.getAllCategories();
+    }
+
+
+    @Override
+    public Category updateCategory(Category category, String editedName) {
+        return dbManager.updateCategory(category, editedName);
     }
 
     @Override
-    public void createCategory(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Movie createMovie(String title, int time, String genre, String path) {
+      return dbManager.createMovie(title, time, path, genre);
+    }
+
+    @Override
+    public void createCategory(Category category) {
+        dbManager.createCategory(category);
+    }
+
+    @Override
+    public void deleteCategory(Category category) {
+        dbManager.deleteCategory(category);
     }
 
     @Override
     public void deleteCategory(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        dbManager.deleteCategory(name);
     }
-     
-
 }
