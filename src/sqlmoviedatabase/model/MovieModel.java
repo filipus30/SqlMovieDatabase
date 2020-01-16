@@ -31,7 +31,9 @@ public final class MovieModel  {
         public ObservableList<Movie> getmovielist() {
         List<Movie> allMovies = logicManager.getAllMovies();
         for (Movie movie1 : allMovies) {
+
             //Save the converted time in the hh:mm:ss format before adding the song to an ObservableList.
+
           // movie1.setStringTime(sec_To_Format(movie1.getDuration()));
         }
         movielist = FXCollections.observableArrayList(allMovies);
@@ -45,12 +47,12 @@ public final class MovieModel  {
         return logicManager.format_To_Sec(timeString);
     }
         public void createMovie(String title, int time, String genre, String path) {
-        Movie movie = logicManager.createMovie(title, time, path, genre);
+        Movie movie = logicManager.createMovie(title, time, genre, path);
         movielist.add(movie);
     }
         
-        public void updateMovie(Movie movie, String editedTitle, String editedGenre, int editedTime, String editedPath) {
-        logicManager.updateMovie(movie, editedTitle, editedGenre, editedTime, editedPath);
+        public void UpdateMovie(Movie movie, String editedTitle, String editedGenre, int editedTime, String editedPath) {
+        logicManager.UpdateMovie(movie, editedTitle, editedGenre, editedTime, editedPath);
     }
         
         public void deleteMovie(Movie movie) {

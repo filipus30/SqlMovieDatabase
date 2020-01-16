@@ -6,6 +6,11 @@
 package sqlmoviedatabase.model;
 
 import java.util.List;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import sqlmoviedatabase.be.Category;
+import sqlmoviedatabase.be.Movie;
 import sqlmoviedatabase.be.Category;
 import sqlmoviedatabase.bll.LogicFacade;
 import sqlmoviedatabase.bll.LogicManager;
@@ -16,6 +21,7 @@ import sqlmoviedatabase.bll.LogicManager;
  */
 public class CategoryModel {
     
+    private ObservableList<Category> categorylist;
     private final LogicFacade logicLayer;
 
     /**
@@ -23,6 +29,16 @@ public class CategoryModel {
      */
     public CategoryModel() {
         logicLayer = (LogicFacade) new LogicManager();
+    }
+    
+        public ObservableList<Category> getcategorylist() {
+        List<Category> allCategories = logicLayer.getAllCategories();
+        for (Category category1 : allCategories) {
+            //Save the converted time in the hh:mm:ss format before adding the  to an ObservableList.
+        //category1.setStringTime(sec_To_Format(category1.getDuration()));
+        }
+        categorylist = FXCollections.observableArrayList(allCategories);
+        return categorylist;
     }
 
     /**
@@ -39,16 +55,14 @@ public class CategoryModel {
      *
      * @param name The name of the newly created genre.
      */
+
     public Category createCategory(String name) {
        return logicLayer.createCategory(name);
+
     }
 
-    /**
-     * Deletes a genre.
-     *
-     * @param name The name of the genre to be deleted.
-     */
     public void deleteCategory(String name) {
-        logicLayer.deleteCategory(name);
+       logicLayer.deleteCategory(name);
     }
+        
 }

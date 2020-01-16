@@ -64,7 +64,7 @@ public class MovieDAO {
                 
                 
                 if(movies.isEmpty()){
-                    //Create a new instance of the busioness entity Song with the values.
+                    //Create a new instance of the busioness entity  with the values.
                     Movie p = new Movie(movid, title,personalrating,imdbrating,lastview,filelocation,category,duration);
                     movies.add(p);//Add the movie to the list.
                 }
@@ -86,7 +86,7 @@ public class MovieDAO {
                 
                 
                     if(movieedit == false){
-                        //Create a new instance of the busioness entity Song with the values.
+                        //Create a new instance of the busioness entity  with the values.
                         Movie p = new Movie(movid, title,personalrating,imdbrating,lastview,filelocation,category,duration);
                         movies.add(p);//Add the movie to the list.
                     }

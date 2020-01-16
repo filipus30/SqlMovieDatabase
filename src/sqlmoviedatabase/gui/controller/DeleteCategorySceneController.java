@@ -13,6 +13,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import sqlmoviedatabase.be.Category;
+import sqlmoviedatabase.model.CategoryModel;
 import sqlmoviedatabase.bll.LogicManager;
 import sqlmoviedatabase.model.MainModel;
 
@@ -28,9 +30,11 @@ public class DeleteCategorySceneController implements Initializable {
     @FXML
     private Button btn_cancel;
     
-    
+    private CategoryModel categoryModel;
+    private Category selectedCategory;
     private PrimaryController pCon;
     @FXML
+
     private Label nameofcategory;
     private MainModel model;
     LogicManager lm = new LogicManager();
@@ -41,22 +45,35 @@ public class DeleteCategorySceneController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
       nameofcategory.setText(model.getCategory().getCatname());
     
+
     }    
 
     @FXML
     private void handle_confirmCategory(ActionEvent event) {
+
             System.out.println(model.getCategory().getCatname());
         lm.deleteCategory(model.getCategory().getCatname());
          Stage stage = (Stage) btn_confirmCategory.getScene().getWindow();
+
         stage.close();
     }
 
     @FXML
+
     private void handle_closeScene(ActionEvent event) {
          Stage stage = (Stage) btn_cancel.getScene().getWindow();
         stage.close();
+
     }
     
+    public void setDeleteCategoryLabel(Category category) {
+        selectedCategory = category;
+        lbl_title.setText(selectedCategory.getName());
+    }
+    
+    private void refreshCategories() {
+        pCon.refreshCategories();
+    }
         public void setContr(PrimaryController pCon) {
         this.pCon = pCon;
     }

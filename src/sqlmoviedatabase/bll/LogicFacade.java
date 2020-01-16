@@ -16,14 +16,12 @@ import sqlmoviedatabase.be.Movie;
 public interface LogicFacade {
     
     
-    Movie createMovie(String title, int time, String path, String genre);
-
-
+    Movie createMovie(String title, int time, String genre, String path);
+    
     List<Movie> getAllMovies();
 
-
-    Movie updateMovie(Movie movie, String editedTitle, String editedGenre, int editedTime, String editedPath);
-
+    Movie UpdateMovie(Movie movie, String editedTitle, String editedGenre, int editedTime, String editedPath);
+    
 
     void deleteMovie(Movie movie);
 
@@ -48,9 +46,16 @@ public interface LogicFacade {
 
     List<Category> getAllCategories();
 
+    void createCategory(Category category);
     
+
     Category createCategory(String name);
+
     
+    Category updateCategory(Category category, String editedName);
+
     void deleteCategory(String name);
+
     void editCategory(String name,String newname);
+
 }
