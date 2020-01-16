@@ -40,7 +40,7 @@ public class LogicManager implements LogicFacade{
         return dc.getAllMovies();
     }
 
-     public List<Movie> search(List<Movie> searchBase, String query, String cat) {
+     public List<Movie> search(List<Movie> searchBase, String query) {
           
        List<Movie> filtered = FXCollections.observableArrayList();
 
@@ -49,7 +49,7 @@ public class LogicManager implements LogicFacade{
         }
 
         for (Movie movie : searchBase) {
-            if (movie.getTitle().toLowerCase().contains(query.toLowerCase()) && movie.getCategory().toLowerCase().contains(cat.toLowerCase()))
+            if (movie.getTitle().toLowerCase().contains(query.toLowerCase()))
             {
                 filtered.add(movie);
             }
@@ -138,10 +138,7 @@ public class LogicManager implements LogicFacade{
     {
         cd.EditCategory(name,newname);
     }
-    @Override
-    public List<Movie> search(List<Movie> searchBase, String query) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
      
 
 }

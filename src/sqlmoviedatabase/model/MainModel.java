@@ -5,7 +5,13 @@
  */
 package sqlmoviedatabase.model;
 
+import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import sqlmoviedatabase.be.Category;
+import sqlmoviedatabase.be.Movie;
+import sqlmoviedatabase.bll.LogicFacade;
+import sqlmoviedatabase.bll.LogicManager;
 
 /**
  *
@@ -15,8 +21,12 @@ public class MainModel {
     private static MainModel instance;
     private Category categorytodel,categorytoedit;
     private boolean editing;
+    private LogicFacade logicManager;
+    private List<Movie> movieList;
      private MainModel()
      {
+        logicManager = new LogicManager();
+        movieList = FXCollections.observableArrayList(logicManager.getAllMovies());
          editing = false;
          categorytodel = new Category("");
      }
@@ -50,5 +60,13 @@ public class MainModel {
     public void setEditingFalse()
     {
         editing = false;
+    }
+    public void setMovieList(List<Movie> filtered)
+    {
+        movieList = filtered;
+    }
+    public List<Movie> getMovieList()
+    {
+        return movieList;
     }
 }

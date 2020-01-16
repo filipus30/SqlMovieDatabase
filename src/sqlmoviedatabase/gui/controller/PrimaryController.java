@@ -87,6 +87,7 @@ public class PrimaryController implements Initializable {
     @FXML
     private Button btn_play;
     private MainModel model;
+    private boolean catselected = false;
     private MediaPlayer mediaPlayer;
     public PrimaryController()
     {
@@ -227,16 +228,21 @@ public class PrimaryController implements Initializable {
         
     @FXML
     private void handle_Search(ActionEvent event) {
-       List<Movie> movielist = FXCollections.observableArrayList(lm.getAllMovies());
-       
-       tbv_Library.setItems((ObservableList<Movie>) lm.search(movielist,searchbar.getText(),categories.getSelectionModel().getSelectedItem().getCatname()));
+       if(catselected==false)
+       {
+       tbv_Library.setItems((ObservableList<Movie>) lm.search(lm.getAllMovies(),searchbar.getText()));
+       }
+       else{
+        tbv_Library.setItems((ObservableList<Movie>) lm.search(model.getMovieList(),searchbar.getText()));
+       }
     }
     
     @FXML
     private void handle_Categories(ActionEvent event) {
+        catselected = true;
         List<Movie> movielist = FXCollections.observableArrayList(lm.getAllMovies());
        tbv_Library.setItems((ObservableList<Movie>) lm.searchcat(movielist,categories.getSelectionModel().getSelectedItem().getCatname()));
-    }
+       model.setMovieList(lm.searchcat(movielist,categories.getSelectionModel().getSelectedItem().getCatname()));}
 
     @FXML
     private void handle_playMovie(ActionEvent event) throws IOException {
