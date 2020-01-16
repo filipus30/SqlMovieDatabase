@@ -18,6 +18,7 @@ import sqlmoviedatabase.dal.DalController;
  *
  * @author Abdi
  */
+
 public class LogicManager implements LogicFacade{
     DalController dc = new DalController();
     private final TimeConverter timeConverter;
@@ -49,6 +50,7 @@ public class LogicManager implements LogicFacade{
 
         return filtered;
     }
+
      
 
     @Override
@@ -106,4 +108,5 @@ public class LogicManager implements LogicFacade{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
      
+
 }

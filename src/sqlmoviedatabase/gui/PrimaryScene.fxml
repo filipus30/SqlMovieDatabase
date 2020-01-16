@@ -14,7 +14,9 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
+
 <AnchorPane id="AnchorPane" prefHeight="736.0" prefWidth="1226.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sqlmoviedatabase.gui.controller.PrimaryController">
+
 
    <children>
       <VBox prefHeight="736.0" prefWidth="1226.0">
@@ -33,8 +35,10 @@
                         <TableColumn fx:id="col_lastViewed" prefWidth="129.0" text="LAST VIEWED" />
                     </columns>
                   </TableView>
+
                   <TextField fx:id="searchbar" layoutX="212.0" layoutY="29.0" onAction="#handle_Search" prefHeight="31.0" prefWidth="715.0" promptText="Search..." />
                   <ComboBox fx:id="filter" layoutX="1018.0" layoutY="29.0" onAction="#handle_Filter" prefWidth="150.0" promptText="Filter by rating" styleClass="lblFlow" stylesheets="@css/style.css" />
+
                   <Pane layoutX="210.0" layoutY="660.0" prefHeight="45.0" prefWidth="252.0" style="-fx-background-color: #00FFFF#00FFFF;" stylesheets="@css/style.css">
 
                      <children>

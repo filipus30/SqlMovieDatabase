@@ -32,6 +32,11 @@ import sqlmoviedatabase.be.Movie;
 import sqlmoviedatabase.bll.LogicManager;
 import sqlmoviedatabase.dal.MovieDAO;
 import sqlmoviedatabase.model.MovieModel;
+import javafx.scene.input.KeyEvent;
+import sqlmoviedatabase.be.Category;
+import sqlmoviedatabase.be.Movie;
+import sqlmoviedatabase.bll.LogicManager;
+import sqlmoviedatabase.dal.MovieDAO;
 
 
 
@@ -55,7 +60,7 @@ public class PrimaryController implements Initializable {
     @FXML
     private TextField searchbar;
     @FXML
-    private ComboBox<?> categories;
+    private ComboBox<Category> categories;
     @FXML
     private ComboBox<Integer> filter;
     @FXML
@@ -70,6 +75,7 @@ public class PrimaryController implements Initializable {
     private TableColumn<Movie,String> col_movieTitle;
     @FXML
     private TableColumn<Movie,String> col_IMDbRating;
+
     @FXML
     private TableColumn<Movie,String> col_userRating;
     @FXML
@@ -94,12 +100,24 @@ public class PrimaryController implements Initializable {
       
      ObservableList<Movie> movielist = FXCollections.observableArrayList(lm.getAllMovies());
      
+
+     ObservableList<Category> categorylist = FXCollections.observableArrayList(lm.getAllCategories());
+
      col_movieTitle.setCellValueFactory(new PropertyValueFactory ("Title"));
      col_IMDbRating.setCellValueFactory(new PropertyValueFactory ("Imdb_Rating"));
      col_userRating.setCellValueFactory(new PropertyValueFactory ("Personal_Rating"));
      col_lastViewed.setCellValueFactory(new PropertyValueFactory ("LastView"));
+
      col_length.setCellValueFactory(new PropertyValueFactory<>("stringTime"));
      tbv_Library.setItems(movieModel.getmovielist());
+
+
+     col_movieGenres.setCellValueFactory(new PropertyValueFactory ("Category"));
+
+   //  tbv_Library.setItems(movielist);
+     categories.setItems(categorylist);
+
+
     }    
 
 
@@ -221,6 +239,13 @@ public class PrimaryController implements Initializable {
 
     @FXML
     private void handle_Filter(ActionEvent event) {
+    }
+
+    @FXML
+    private void handle_search(KeyEvent event) {
+             ObservableList<Movie> movielist = FXCollections.observableArrayList(lm.getAllMovies());
+       tbv_Library.setItems( lm.search(movielist,searchbar.getText()));
+       
     }
     
 }
