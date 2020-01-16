@@ -223,12 +223,14 @@ public class PrimaryController implements Initializable {
     @FXML
     private void handle_Search(ActionEvent event) {
        List<Movie> movielist = FXCollections.observableArrayList(lm.getAllMovies());
-       tbv_Library.setItems((ObservableList<Movie>) lm.search(movielist,searchbar.getText()));
+       
+       tbv_Library.setItems((ObservableList<Movie>) lm.search(movielist,searchbar.getText(),categories.getSelectionModel().getSelectedItem().getCatname()));
     }
     
     @FXML
     private void handle_Categories(ActionEvent event) {
-        
+        List<Movie> movielist = FXCollections.observableArrayList(lm.getAllMovies());
+       tbv_Library.setItems((ObservableList<Movie>) lm.searchcat(movielist,categories.getSelectionModel().getSelectedItem().getCatname()));
     }
 
     @FXML

@@ -38,7 +38,7 @@ public class LogicManager implements LogicFacade{
         return dc.getAllMovies();
     }
 
-     public List<Movie> search(List<Movie> searchBase, String query) {
+     public List<Movie> search(List<Movie> searchBase, String query, String cat) {
           
        List<Movie> filtered = FXCollections.observableArrayList();
 
@@ -47,7 +47,7 @@ public class LogicManager implements LogicFacade{
         }
 
         for (Movie movie : searchBase) {
-            if (movie.getTitle().toLowerCase().contains(query.toLowerCase() )) //|| movie.getCategory().toLowerCase().contains(query.toLowerCase())
+            if (movie.getTitle().toLowerCase().contains(query.toLowerCase()) && movie.getCategory().toLowerCase().contains(cat.toLowerCase()))
             {
                 filtered.add(movie);
             }
@@ -57,7 +57,23 @@ public class LogicManager implements LogicFacade{
     }
 
      
+       public List<Movie> searchcat(List<Movie> searchBase, String query) {
+          
+       List<Movie> filtered = FXCollections.observableArrayList();
 
+        if (query.isEmpty()) {
+            return searchBase;
+        }
+
+        for (Movie movie : searchBase) {
+            if (movie.getCategory().toLowerCase().contains(query.toLowerCase() )) //|| movie.getCategory().toLowerCase().contains(query.toLowerCase())
+            {
+                filtered.add(movie);
+            }
+        }
+
+        return filtered;
+    }
     @Override
     public Movie createMovie(String title, int time, String path, String genre) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -112,6 +128,11 @@ public class LogicManager implements LogicFacade{
 
     @Override
     public void deleteCategory(String name) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Movie> search(List<Movie> searchBase, String query) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
      
