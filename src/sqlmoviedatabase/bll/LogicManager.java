@@ -76,6 +76,20 @@ public class LogicManager implements LogicFacade{
 
         return filtered;
     }
+       
+        public List<Movie> searchrat(List<Movie> searchBase, int rate) {
+          
+       List<Movie> filtered = FXCollections.observableArrayList();
+
+        for (Movie movie : searchBase) {
+            if (movie.getImdb_Rating() >= rate ) //|| movie.getCategory().toLowerCase().contains(query.toLowerCase())
+            {
+                filtered.add(movie);
+            }
+        }
+
+        return filtered;
+    }
     @Override
     public Movie createMovie(String title, int time, String path, String genre) {
       return md.createMovie(time, title, time, time, path, path, genre, path);
