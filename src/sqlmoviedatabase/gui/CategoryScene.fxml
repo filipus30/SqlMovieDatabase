@@ -15,8 +15,8 @@
             <Font name="Arial" size="15.0" />
          </font>
       </Label>
-      <TextField id="txtField_PlaylistName" fx:id="txtField_name" layoutX="95.0" layoutY="56.0" prefHeight="25.0" prefWidth="260.0" />
-      <Button id="btn_SavePlaylist" fx:id="btn_saveCategory" layoutX="290.0" layoutY="127.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handle_saveCategory" prefHeight="20.0" prefWidth="20.0" textFill="WHITE" AnchorPane.rightAnchor="125.0">
+      <TextField id="txtField_PlaylistName" fx:id="txtField_Category" layoutX="95.0" layoutY="56.0" prefHeight="25.0" prefWidth="260.0" />
+      <Button id="btn_SavePlaylist" fx:id="btn_save" layoutX="290.0" layoutY="127.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handle_saveCategory" prefHeight="20.0" prefWidth="20.0" textFill="WHITE" AnchorPane.rightAnchor="125.0">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -25,7 +25,7 @@
             </ImageView>
          </graphic>
       </Button>
-      <Button id="btn_CancelPlaylist" fx:id="btn_closeScene" layoutX="335.0" layoutY="127.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handle_closeScene" prefHeight="20.0" prefWidth="20.0" textFill="WHITE" AnchorPane.rightAnchor="95.0">
+      <Button id="btn_CancelPlaylist" fx:id="btn_cancel" layoutX="335.0" layoutY="127.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handle_closeScene" prefHeight="20.0" prefWidth="20.0" textFill="WHITE" AnchorPane.rightAnchor="95.0">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>

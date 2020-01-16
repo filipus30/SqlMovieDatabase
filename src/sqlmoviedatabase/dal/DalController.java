@@ -13,14 +13,13 @@ import sqlmoviedatabase.be.Movie;
  * @author filip
  */
 public class DalController {
-     private List<Movie> movielist;
-     private List<Category> categorylist;
+
+     private List<Movie> LibraryList;
      private MovieDAO moviedao;
-     private CategoryDAO categorydao;
 
     public DalController()
     {
-    categorydao = new CategoryDAO();
+
     moviedao = new MovieDAO();
     }
          
@@ -28,26 +27,17 @@ public class DalController {
      {
          try
          {
-        movielist = moviedao.getAllMovies();
+        LibraryList = moviedao.getAllMovies();
+
          }
           catch(SQLException e)
           {
               
           }
-         return movielist;
+
+         return LibraryList;
      }
      
-     public List<Category> getAllCategories()
-     {
-         try
-         {
-             categorylist = categorydao.getAllCategories();
-         }
-         catch(SQLException e)
-         {
-             
-         }
-         return categorylist;
-     }
+     
 
 }

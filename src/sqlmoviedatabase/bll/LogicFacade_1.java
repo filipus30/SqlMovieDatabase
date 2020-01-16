@@ -3,17 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package sqlmoviedatabase.bll.util;
-
-import java.util.ArrayList;
-import java.util.List;
-import sqlmoviedatabase.be.Movie;
+package sqlmoviedatabase.bll;
 
 /**
  *
- * @author Abdi
+ * @author PC
  */
-public class Search {
+interface LogicFacade {
     
-
 }
