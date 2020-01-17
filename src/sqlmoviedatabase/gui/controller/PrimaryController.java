@@ -38,10 +38,7 @@ import sqlmoviedatabase.be.Category;
 import sqlmoviedatabase.be.Movie;
 import sqlmoviedatabase.bll.LogicManager;
 import sqlmoviedatabase.dal.MovieDAO;
-import sqlmoviedatabase.model.CategoryModel;
-
 import sqlmoviedatabase.model.MainModel;
-
 
 
 
@@ -85,17 +82,11 @@ public class PrimaryController implements Initializable {
     private TableColumn<Movie,String> col_userRating;
     @FXML
     private Button btn_editCategory;
-    
-    private Movie movie;
-    private Category category;
-    private MovieModel movieModel;
-    private CategoryModel categoryModel;   
     LogicManager lm = new LogicManager();
-    private MediaPlayer mediaPlayer;
-    
+    private MovieModel movieModel;
+    private Movie movie;
     @FXML
     private Button btn_play;
-
     private MainModel model;
     private boolean searching = false;
     private boolean catselected = false;
@@ -108,7 +99,6 @@ public class PrimaryController implements Initializable {
     {
          model = MainModel.GetInstance(); 
     }
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         settingTableViews();
@@ -118,7 +108,7 @@ public class PrimaryController implements Initializable {
     }
      private void settingTableViews() {
       movieModel = new MovieModel();
-      categoryModel = new CategoryModel();
+      
       
      ObservableList<Movie> movielist = FXCollections.observableArrayList(lm.getAllMovies());
      
@@ -130,7 +120,7 @@ public class PrimaryController implements Initializable {
      col_userRating.setCellValueFactory(new PropertyValueFactory ("Personal_Rating"));
      col_lastViewed.setCellValueFactory(new PropertyValueFactory ("LastView"));
 
-     col_length.setCellValueFactory(new PropertyValueFactory<>("stringTime"));
+     col_length.setCellValueFactory(new PropertyValueFactory<>("Duration"));
      tbv_Library.setItems(movieModel.getmovielist());
 
 
@@ -150,18 +140,17 @@ public class PrimaryController implements Initializable {
         root1 = (Parent) fxmlLoader.load();
         fxmlLoader.<MovieSceneController>getController().setContr(this);
 
-        Stage movieStage = new Stage();
-        Scene movieScene = new Scene(root1);
+        Stage songStage = new Stage();
+        Scene songScene = new Scene(root1);
 
-        //categoryStage.initStyle(StageStyle.UNDECORATED);
-        movieStage.setScene(movieScene);
-        movieStage.show();
+        //songStage.initStyle(StageStyle.UNDECORATED);
+        songStage.setScene(songScene);
+        songStage.show();
     }
     
     @FXML
     private void handle_getMovie(MouseEvent event) {
        movie = tbv_Library.getSelectionModel().getSelectedItem();
-
     }
 
     @FXML
@@ -183,8 +172,8 @@ public class PrimaryController implements Initializable {
     }
     @FXML
     private void handle_removeMovie(ActionEvent event) throws IOException {
-        Movie selectedMovie = tbv_Library.getSelectionModel().getSelectedItem();
         
+        Movie selectedMovie = tbv_Library.getSelectionModel().getSelectedItem();
         Parent root;
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/sqlmoviedatabase/gui/DeleteMovieScene.fxml"));
         root = (Parent) fxmlLoader.load();
@@ -199,14 +188,12 @@ public class PrimaryController implements Initializable {
         movieStage.show();
     }
     
-    
-    public void refreshLibrary() {
+        public void refreshLibrary() {
          tbv_Library.getItems().clear();
          tbv_Library.setItems(movieModel.getmovielist());
     }
     @FXML
     private void handle_editCategory(ActionEvent event) throws IOException {
-
          model.setEditingTrue();
          model.setCategory(categories.getSelectionModel().getSelectedItem());
         Parent root;
@@ -214,13 +201,13 @@ public class PrimaryController implements Initializable {
         root = (Parent) fxmlLoader.load();
         CategorySceneController controller = (CategorySceneController) fxmlLoader.getController();
         controller.setContr(this);
-        controller.editMode(selectedCategory);
-        Stage categoryStage = new Stage();
-        Scene categoryScene = new Scene(root);
+
+        Stage movieStage = new Stage();
+        Scene movieScene = new Scene(root);
 
         //movieStage.initStyle(StageStyle.UNDECORATED);
-        categoryStage.setScene(categoryScene);
-        categoryStage.show();
+        movieStage.setScene(movieScene);
+        movieStage.show();
     }
     
     @FXML
@@ -231,12 +218,12 @@ public class PrimaryController implements Initializable {
         root1 = (Parent) fxmlLoader.load();
         fxmlLoader.<CategorySceneController>getController().setContr(this);
 
-        Stage categoryStage = new Stage();
-        Scene categoryScene = new Scene(root1);
+        Stage songStage = new Stage();
+        Scene songScene = new Scene(root1);
 
-        //categoryStage.initStyle(StageStyle.UNDECORATED);
-        categoryStage.setScene(categoryScene);
-        categoryStage.show();
+        //songStage.initStyle(StageStyle.UNDECORATED);
+        songStage.setScene(songScene);
+        songStage.show();
     }
 
     @FXML
@@ -248,15 +235,14 @@ public class PrimaryController implements Initializable {
         DeleteCategorySceneController controller = (DeleteCategorySceneController) fxmlLoader.getController();
         controller.setContr(this);
 
-        Stage categoryStage = new Stage();
-        Scene categoryScene = new Scene(root);
+        Stage movieStage = new Stage();
+        Scene movieScene = new Scene(root);
 
         //MovieStage.initStyle(StageStyle.UNDECORATED);
-        categoryStage.setScene(categoryScene);
-        categoryStage.show();
+        movieStage.setScene(movieScene);
+        movieStage.show();
     }
         
-
 
   
 
@@ -313,7 +299,6 @@ public class PrimaryController implements Initializable {
         ratselected = true;
     }
 
-
     @FXML
     private void handle_categories(ActionEvent event) {
         catselected = true;
@@ -323,7 +308,6 @@ public class PrimaryController implements Initializable {
     private void handle_textsearch(KeyEvent event) {
     
         textselected = true;}
-    }
 
-  
 
+}

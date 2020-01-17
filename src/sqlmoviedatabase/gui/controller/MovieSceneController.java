@@ -137,19 +137,19 @@ public class MovieSceneController implements Initializable {
     private void handle_saveMovie(ActionEvent event) {
         if (!edit) {
             movieModel.createMovie(txtField_title.getText().trim(),
-                 movieModel.format_To_Sec(txtField_time.getText()),
-                 choiceBox_genre.getSelectionModel().getSelectedItem(),
-                 txtField_filePath.getText());
+             movieModel.format_To_Sec(txtField_time.getText()),
+             choiceBox_genre.getSelectionModel().getSelectedItem(),
+              txtField_filePath.getText());
         } else {
-            movieModel.UpdateMovie(movieToEdit,
-                txtField_title.getText().trim(),
-                choiceBox_genre.getSelectionModel().getSelectedItem(),
-                movieModel.format_To_Sec(txtField_time.getText()),
-                txtField_filePath.getText());
+            movieModel.updateMovie(movieToEdit,
+            txtField_title.getText().trim(),
+            choiceBox_genre.getSelectionModel().getSelectedItem(),
+            movieModel.format_To_Sec(txtField_time.getText()),
+            txtField_filePath.getText());
         }
 
         refreshLibrary();
-
+        
         Stage stage;
         stage = (Stage) btn_save.getScene().getWindow();
         stage.close();
@@ -159,7 +159,7 @@ public class MovieSceneController implements Initializable {
         edit = true;
         movieToEdit = selectedMovie;
 
-        //sets the existing info of the selected .
+        //sets the existing info of the selected movie.
         txtField_title.setText(movieToEdit.getTitle());
         txtField_time.setText(movieToEdit.getDuration());
         txtField_filePath.setText(movieToEdit.getFileLocation());
@@ -187,7 +187,7 @@ public class MovieSceneController implements Initializable {
         this.pCon = pCon;
     }
     
-        public void refreshLibrary() {
+    public void refreshLibrary() {
         pCon.refreshLibrary();
     }
 
