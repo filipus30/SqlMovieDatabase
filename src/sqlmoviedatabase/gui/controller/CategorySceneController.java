@@ -13,11 +13,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import sqlmoviedatabase.be.Category;
-import sqlmoviedatabase.model.CategoryModel;
 import sqlmoviedatabase.bll.LogicManager;
 import sqlmoviedatabase.model.MainModel;
-
 
 /**
  * FXML Controller class
@@ -32,29 +29,23 @@ public class CategorySceneController implements Initializable {
     private Button btn_cancel;
     @FXML
     private Button btn_save;
-
     private MainModel model;
     public CategorySceneController()
     {
            model = MainModel.GetInstance(); 
     }
     LogicManager lm = new LogicManager();
-
     private PrimaryController pCon;
-
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        edit = false;
-        categoryModel = new CategoryModel();
-    }
-    
+        // TODO
+    }    
 
     @FXML
     private void handle_saveCategory(ActionEvent event) {
-
          if(model.getEditing())
          {
          lm.editCategory(model.getCategory().getCatname(),txtField_Category.getText());
@@ -63,7 +54,6 @@ public class CategorySceneController implements Initializable {
           else{
                    lm.createCategory(txtField_Category.getText());
               }
-
         Stage stage;
         stage = (Stage) btn_save.getScene().getWindow();
         stage.close();
@@ -74,17 +64,6 @@ public class CategorySceneController implements Initializable {
         Stage stage = (Stage) btn_cancel.getScene().getWindow();
         stage.close();
         
-    }
-        public void editMode(Category selectedCategory) {
-        edit = true;
-        categoryToEdit = selectedCategory;
-
-        //sets the existing info of the selected playlist.
-        txtField_Category.setText(categoryToEdit.getName());
-    }
-
-        private void updateCategories() {
-        pCon.refreshCategories();
     }
     
         public void setContr(PrimaryController pCon) {

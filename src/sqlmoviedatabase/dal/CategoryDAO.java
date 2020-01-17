@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package sqlmoviedatabase.dal;
 
 import com.microsoft.sqlserver.jdbc.SQLServerDataSource;
@@ -87,9 +92,7 @@ public class CategoryDAO {
             Logger.getLogger(GenreDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
      public void EditCategory(String name,String newname) {
-
         try ( //Get a connection to the database.
             Connection con = ds.getConnection()) {
             String sql = "UPDATE Categories SET CatName=? WHERE CatName=?;";
@@ -107,6 +110,4 @@ public class CategoryDAO {
             Logger.getLogger(GenreDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
 }
-
