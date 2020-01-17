@@ -11,10 +11,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import sqlmoviedatabase.be.Movie;
-import sqlmoviedatabase.model.MovieModel;
 
 /**
  * FXML Controller class
@@ -29,38 +26,23 @@ public class DeleteMovieSceneController implements Initializable {
     private Button btn_cancel;
     
     
-    private MovieModel movieModel;
-    private Movie selectedMovie;
+    
     private PrimaryController pCon;
-    @FXML
-    private Label lbl_title;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        movieModel = new MovieModel();
+        // TODO
     }    
 
     @FXML
     private void handle_confirmMovie(ActionEvent event) {
-        movieModel.deleteMovie(selectedMovie);
-        updateLibrary();
         Stage stage;
         stage = (Stage) btn_confirmMovie.getScene().getWindow();
         stage.close();
         
-    }
-    
-        private void updateLibrary() {
-        pCon.refreshLibrary();
-        pCon.refreshCategories();
-    }
-        
-    public void setDeleteMovieLabel(Movie movie) {
-        selectedMovie = movie;
-        lbl_title.setText(selectedMovie.getTitle());
     }
 
     @FXML
