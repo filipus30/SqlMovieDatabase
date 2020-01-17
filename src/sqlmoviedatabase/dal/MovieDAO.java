@@ -238,27 +238,7 @@ public class MovieDAO {
         }
         return lastmovid;
     }
-    public boolean checkMovieTitle(String title){
-        boolean chktitle = true;
-            try(Connection con = ds.getConnection()){
-                String getmovtitle = "SELECT * From Movies WHERE Title=?;";
-                PreparedStatement pstmt = con.prepareStatement(getmovtitle,Statement.RETURN_GENERATED_KEYS);//Prepare the statement, and make sure to get the generated key returned.
-                //Add the actual info for the ? in the prepared statement.
-                pstmt.setString(1, "" + title + "");
-                pstmt.execute(); //Execute the statment.
-                ResultSet rs = pstmt.getGeneratedKeys();//fetch the result of the SQL statement and store it.
-                
-                if(rs.next() == false)//if there are no movies of that title
-                {
-                    chktitle = false;
-                }
-        } catch (SQLServerException ex) { 
-            Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return chktitle; //returns true if the movie exists, else false.
-    }
+    
 
 }
 

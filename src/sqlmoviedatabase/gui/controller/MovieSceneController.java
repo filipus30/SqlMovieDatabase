@@ -71,7 +71,6 @@ public class MovieSceneController implements Initializable {
     @FXML
     private ComboBox<Integer> choiceBox_myrating;
     private LogicManager lm = new LogicManager();
-    private MovieDAO md = new MovieDAO();
     private int id = lm.getNewMovId();
     /**
      * Initializes the controller class.
@@ -118,11 +117,11 @@ public class MovieSceneController implements Initializable {
     @FXML
     private void handle_saveMovie(ActionEvent event) {
        
-        if(md.checkMovieTitle(txtField_title.getText()) == false)
+        if(lm.checkMovieTitle(lm.getAllMovies(),txtField_title.getText()) == false)
         {lm.createMovie(id,txtField_title.getText(),choiceBox_myrating.getValue(),choiceBox_imdbrating.getValue(),"never",txtField_filePath.getText(),choiceBox_category.getSelectionModel().getSelectedItem().getCatname(),txtField_time.getText());}
         else
         {
-            System.out.println(txtField_title.getText());
+            
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Movie With Given Title Already Exist !", ButtonType.OK);
         alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
         alert.show();

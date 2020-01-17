@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.css.Size;
 import sqlmoviedatabase.be.Category;
 import sqlmoviedatabase.be.Movie;
 import sqlmoviedatabase.bll.util.TimeConverter;
@@ -162,10 +163,26 @@ public class LogicManager implements LogicFacade{
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 //    }
     @Override
-    public boolean checkMovieTitle(String title)
+    public boolean checkMovieTitle(List<Movie> searchBase,String title)
     {
-        return md.checkMovieTitle(title);
+        
+       List<Movie> filtered = FXCollections.observableArrayList();
+
+        if (title.isEmpty()) {
+            return false;
+        }
+
+        for (Movie movie : searchBase) {
+            if (movie.getTitle().toLowerCase().equals(title.toLowerCase()))
+            {
+                filtered.add(movie);
+            }
+        }
+       if(filtered.size() >0)
+        return  true;
+       return false;
     }
+    
      
 
 }

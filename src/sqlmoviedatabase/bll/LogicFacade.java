@@ -53,5 +53,5 @@ public interface LogicFacade {
     
     void deleteCategory(String name);
     void editCategory(String name,String newname);
-    boolean checkMovieTitle(String title);
+   boolean checkMovieTitle(List<Movie> searchBase,String title);
 }
