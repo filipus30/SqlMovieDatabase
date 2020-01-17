@@ -14,10 +14,13 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Region;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.FileChooser;
@@ -59,7 +62,7 @@ public class MovieSceneController implements Initializable {
     private CategoryModel categoryModel;
     private PrimaryController pCon;
     private MovieSceneController conMovie;
-    private MovieDAO md = new MovieDAO();
+    
      
     @FXML
     private ChoiceBox<Category> choiceBox_category;
@@ -68,6 +71,7 @@ public class MovieSceneController implements Initializable {
     @FXML
     private ComboBox<Integer> choiceBox_myrating;
     private LogicManager lm = new LogicManager();
+    private MovieDAO md = new MovieDAO();
     private int id = lm.getNewMovId();
     /**
      * Initializes the controller class.
@@ -113,10 +117,16 @@ public class MovieSceneController implements Initializable {
     
     @FXML
     private void handle_saveMovie(ActionEvent event) {
-      
-      //  md.createMovie(id,txtField_title.getText(),choiceBox_myrating.getValue(),choiceBox_imdbrating.getValue(),"never",txtField_filePath.getText(),choiceBox_category.getSelectionModel().getSelectedItem().getCatname(),txtField_title.getText());
-        md.createMovie(id,txtField_title.getText(),choiceBox_myrating.getValue(),choiceBox_imdbrating.getValue(),"never",txtField_filePath.getText(),choiceBox_category.getSelectionModel().getSelectedItem().getCatname(),txtField_time.getText());
-
+       
+        if(md.checkMovieTitle(txtField_title.getText()) == false)
+        {lm.createMovie(id,txtField_title.getText(),choiceBox_myrating.getValue(),choiceBox_imdbrating.getValue(),"never",txtField_filePath.getText(),choiceBox_category.getSelectionModel().getSelectedItem().getCatname(),txtField_time.getText());}
+        else
+        {
+            System.out.println(txtField_title.getText());
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Movie With Given Title Already Exist !", ButtonType.OK);
+        alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+        alert.show();
+        }
 
         Stage stage;
         stage = (Stage) btn_save.getScene().getWindow();

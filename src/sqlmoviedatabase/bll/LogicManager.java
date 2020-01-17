@@ -91,10 +91,11 @@ public class LogicManager implements LogicFacade{
         return filtered;
     }
     @Override
-    public Movie createMovie(String title, int time, String path, String genre) {
-      return md.createMovie(time, title, time, time, path, path, genre, path);
+     public Movie createMovie(int movid, String title,int personal_rating,float imdb_rating, String lastview ,String fileLocation, String category, String duration){
+      return md.createMovie(movid, title,personal_rating,imdb_rating,lastview,fileLocation,category,duration);
     }
-
+    
+    @Override
     public Movie UpdateMovie(Movie movie, String editedTitle, int personalRating, float imdbRating, String lastView, String fileLocation, String duration, String categories) {
         return md.UpdateMovie(movie, editedTitle,personalRating,imdbRating,lastView,fileLocation, duration,categories);
     }
@@ -156,11 +157,15 @@ public class LogicManager implements LogicFacade{
         cd.EditCategory(name,newname);
     }
 
+//    @Override
+//    public Movie updateMovie(Movie movie, String editedTitle, String editedGenre, int editedTime, String editedPath) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
     @Override
-    public Movie updateMovie(Movie movie, String editedTitle, String editedGenre, int editedTime, String editedPath) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean checkMovieTitle(String title)
+    {
+        return md.checkMovieTitle(title);
     }
-    
      
 
 }

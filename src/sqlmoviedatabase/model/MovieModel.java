@@ -44,14 +44,14 @@ public final class MovieModel  {
         public int format_To_Sec(String timeString) {
         return logicManager.format_To_Sec(timeString);
     }
-        public void createMovie(String title, int time, String genre, String path) {
-        Movie movie = logicManager.createMovie(title, time, path, genre);
-        movielist.add(movie);
-    }
+     //   public void createMovie(String title, int time, String genre, String path) {
+     //   Movie movie = logicManager.createMovie(title, time, path, genre);
+     //   movielist.add(movie);
+    
         
-        public void updateMovie(Movie movie, String editedTitle, String editedGenre, int editedTime, String editedPath) {
-        logicManager.updateMovie(movie, editedTitle, editedGenre, editedTime, editedPath);
-    }
+   //     public void updateMovie(Movie movie, String editedTitle, String editedGenre, int editedTime, String editedPath) {
+    //    logicManager.updateMovie(movie, editedTitle, editedGenre, editedTime, editedPath);
+  //  }
         
         public void deleteMovie(Movie movie) {
         logicManager.deleteMovie(movie);
