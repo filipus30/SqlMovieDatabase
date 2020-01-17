@@ -118,7 +118,7 @@ public class PrimaryController implements Initializable {
      col_userRating.setCellValueFactory(new PropertyValueFactory ("Personal_Rating"));
      col_lastViewed.setCellValueFactory(new PropertyValueFactory ("LastView"));
 
-     col_length.setCellValueFactory(new PropertyValueFactory<>("stringTime"));
+     col_length.setCellValueFactory(new PropertyValueFactory<>("Duration"));
      tbv_Library.setItems(movieModel.getmovielist());
 
 
