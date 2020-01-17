@@ -119,7 +119,7 @@ public class MovieDAO {
             pstmt.setString(3, "" + lastView + "");
             pstmt.setString(4, "" + fileLocation + "");
             pstmt.setString(5, "" + duration + "");
-            pstmt.setString(5, "" + title+ "");
+            pstmt.setString(6, "" + title+ "");
             pstmt.execute();
             
             String sqlRemoveCategories = "DELETE FROM CatMov WHERE MovID=?";

@@ -297,7 +297,7 @@ public class PrimaryController implements Initializable {
 
     @FXML
     private void rate(ActionEvent event) {
-         
+    lm.UpdateMovie(tbv_Library.getSelectionModel().getSelectedItem(),tbv_Library.getSelectionModel().getSelectedItem().getTitle(),ratebox.getValue(),tbv_Library.getSelectionModel().getSelectedItem().getImdb_Rating(),tbv_Library.getSelectionModel().getSelectedItem().getLastView(),tbv_Library.getSelectionModel().getSelectedItem().getFileLocation(),tbv_Library.getSelectionModel().getSelectedItem().getDuration(),tbv_Library.getSelectionModel().getSelectedItem().getCategory());
     }
     }
 
