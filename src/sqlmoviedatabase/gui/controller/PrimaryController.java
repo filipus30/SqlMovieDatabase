@@ -9,6 +9,9 @@ import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -94,6 +97,7 @@ public class PrimaryController implements Initializable {
     private boolean catselected = false;
     private boolean ratselected = false;
     private boolean textselected = false;
+    
     private MediaPlayer mediaPlayer;
     @FXML
     private Button button_search;
@@ -234,7 +238,10 @@ public class PrimaryController implements Initializable {
 
     @FXML
     private void handle_playMovie(ActionEvent event) throws IOException {
-        
+        DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        Date date = new Date();
+        System.out.println(dateFormat.format(date));
+        lm.UpdateMovie(tbv_Library.getSelectionModel().getSelectedItem(),tbv_Library.getSelectionModel().getSelectedItem().getTitle(),tbv_Library.getSelectionModel().getSelectedItem().getPersonal_Rating(),tbv_Library.getSelectionModel().getSelectedItem().getImdb_Rating(),dateFormat.format(date),tbv_Library.getSelectionModel().getSelectedItem().getFileLocation(),tbv_Library.getSelectionModel().getSelectedItem().getDuration(),tbv_Library.getSelectionModel().getSelectedItem().getCategory());
         Desktop.getDesktop().open(new File(tbv_Library.getSelectionModel().getSelectedItem().getFileLocation()));
    }
 
