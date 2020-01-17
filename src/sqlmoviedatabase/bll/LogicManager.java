@@ -102,7 +102,7 @@ public class LogicManager implements LogicFacade{
 
     @Override
     public void deleteMovie(Movie movie) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       md.deleteMovie(movie); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

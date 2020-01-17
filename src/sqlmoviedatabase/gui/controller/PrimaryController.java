@@ -83,7 +83,7 @@ public class PrimaryController implements Initializable {
     private TableColumn<Movie,String> col_userRating;
     @FXML
     private Button btn_editCategory;
-    MovieDAO md = new MovieDAO();
+  
     LogicManager lm = new LogicManager();
     private MovieModel movieModel;
     private Movie movie;
@@ -176,7 +176,7 @@ public class PrimaryController implements Initializable {
     }
     @FXML
     private void handle_removeMovie(ActionEvent event) throws IOException {
-       md.deleteMovie(tbv_Library.getSelectionModel().getSelectedItem());
+       lm.deleteMovie(tbv_Library.getSelectionModel().getSelectedItem());
     }
     @FXML
     private void handle_editCategory(ActionEvent event) throws IOException {
