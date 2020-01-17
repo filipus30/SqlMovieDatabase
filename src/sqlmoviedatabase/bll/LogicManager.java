@@ -16,9 +16,6 @@ import sqlmoviedatabase.be.Category;
 import sqlmoviedatabase.be.Movie;
 import sqlmoviedatabase.bll.util.TimeConverter;
 import sqlmoviedatabase.dal.CategoryDAO;
-
-import sqlmoviedatabase.dal.DBFacade;
-import sqlmoviedatabase.dal.DBManager;
 import sqlmoviedatabase.dal.DalController;
 import sqlmoviedatabase.dal.MovieDAO;
 
@@ -30,16 +27,12 @@ import sqlmoviedatabase.dal.MovieDAO;
 public class LogicManager implements LogicFacade{
     DalController dc = new DalController();
     CategoryDAO cd = new CategoryDAO();
-
     MovieDAO md = new MovieDAO();
-
     private final TimeConverter timeConverter;
-    private final DBFacade dbManager;
-   
-public LogicManager() {
     
-    dbManager = (DBFacade) new DBManager(); 
-    timeConverter = new TimeConverter();
+        public LogicManager() {
+            
+        timeConverter = new TimeConverter();
     }
     
     public List<Movie> getAllMovies()
@@ -47,7 +40,7 @@ public LogicManager() {
         return dc.getAllMovies();
     }
 
-     public List<Movie> search(List<Movie> searchBase, String query, String cat) {
+     public List<Movie> search(List<Movie> searchBase, String query) {
           
        List<Movie> filtered = FXCollections.observableArrayList();
 
@@ -56,9 +49,7 @@ public LogicManager() {
         }
 
         for (Movie movie : searchBase) {
-
             if (movie.getTitle().toLowerCase().contains(query.toLowerCase()))
-
             {
                 filtered.add(movie);
             }
@@ -84,7 +75,6 @@ public LogicManager() {
         }
 
         return filtered;
-
     }
        
         public List<Movie> searchrat(List<Movie> searchBase, int rate) {
@@ -105,35 +95,28 @@ public LogicManager() {
       return md.createMovie(time, title, time, time, path, path, genre, path);
     }
 
-
     @Override
-    public Movie UpdateMovie(Movie movie, String editedTitle, String editedGenre, int editedTime, String editedPath) {
-        dbManager.UpdateMovie(movie, editedTitle, editedGenre, editedTime, editedPath);
-        return null;
+    public Movie updateMovie(Movie movie, String editedTitle, String editedGenre, int editedTime, String editedPath) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void deleteMovie(Movie movie) {
-       dbManager.deleteMovie(movie);
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void createGenre(String name) {
-        dbManager.createGenre(name);
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public List<String> getAllGenres() {
-        return dbManager.getAllGenres();
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void deleteGenre(String name) {
-        dbManager.deleteGenre(name);
-    }
-
-    @Override
-    public List<Movie> search(List<Movie> searchBase, String query) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -151,15 +134,8 @@ public LogicManager() {
   
     @Override
     public List<Category> getAllCategories() {
-      return  cd.getAllCategories();
+            return  cd.getAllCategories();
       }
-
-    @Override
-    public Movie createMovie(String title, int time, String genre, String path) {
-      return dbManager.createMovie(title, time, path, genre);
-    }
-
-            
 
    
     @Override
@@ -179,19 +155,4 @@ public LogicManager() {
     
      
 
-
-    @Override
-    public void createCategory(Category category) {
-        dbManager.createCategory(category);
-    }
-
-    @Override
-    public void deleteCategory(Category category) {
-        dbManager.deleteCategory(category);
-    }
-
-    @Override
-    public void deleteCategory(String name) {
-        dbManager.deleteCategory(name);
-    }
 }
