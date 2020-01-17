@@ -48,15 +48,6 @@
                         </Button>
                      </children>
                   </Pane>
-                  <Pane layoutX="462.0" layoutY="660.0" prefHeight="45.0" prefWidth="252.0" style="-fx-background-color: #00FFFF#00FFFF;" stylesheets="@css/style.css">
-                     <children>
-                        <Button fx:id="btn_edit" layoutX="11.0" layoutY="6.0" mnemonicParsing="false" onAction="#handle_editMovie" prefHeight="31.0" prefWidth="227.0" text="Edit Movie">
-                           <font>
-                              <Font name="Arial Bold" size="15.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </Pane>
                   <Pane layoutX="714.0" layoutY="660.0" prefHeight="45.0" prefWidth="252.0" style="-fx-background-color: #00FFFF#00FFFF;" stylesheets="@css/style.css">
                      <children>
                         <Button fx:id="btn_remove" layoutX="11.0" layoutY="6.0" mnemonicParsing="false" onAction="#handle_removeMovie" prefHeight="31.0" prefWidth="227.0" text="Remove Movie">
@@ -105,6 +96,12 @@
                      </children>
                   </Pane>
                   <Button fx:id="button_search" layoutX="940.0" layoutY="32.0" mnemonicParsing="false" onAction="#handle_search" prefHeight="26.0" prefWidth="55.0" text="Search!" />
+                  <Button fx:id="ratebutton" layoutX="471.0" layoutY="661.0" mnemonicParsing="false" onAction="#rate" prefHeight="43.0" prefWidth="140.0" text="RATE !">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Button>
+                  <ComboBox fx:id="ratebox" layoutX="638.0" layoutY="661.0" prefHeight="43.0" prefWidth="55.0" />
                </children>
             </AnchorPane>
          </children>

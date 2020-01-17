@@ -9,6 +9,8 @@ import java.io.File;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -21,7 +23,10 @@ import javafx.scene.media.MediaPlayer;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import sqlmoviedatabase.be.Category;
 import sqlmoviedatabase.be.Movie;
+import sqlmoviedatabase.bll.LogicManager;
+import sqlmoviedatabase.dal.MovieDAO;
 import sqlmoviedatabase.model.CategoryModel;
 import sqlmoviedatabase.model.GenreModel;
 import sqlmoviedatabase.model.MovieModel;
@@ -35,25 +40,16 @@ public class MovieSceneController implements Initializable {
 
     @FXML
     private TextField txtField_title;
-    @FXML
+  @FXML
     private TextField txtField_time;
     @FXML
     private TextField txtField_filePath;
     @FXML
     private Button btn_cancel;
     @FXML
-    private Button btn_deleteGenre;
-    @FXML
     private Button btn_choosefile;
     @FXML
     private Button btn_save;
-    @FXML
-    private Button btn_createGenre;
-    @FXML
-    private Button btn_createVisible;
-    @FXML
-    private TextField txt_createGenre;
-    @FXML
     private ChoiceBox<String> choiceBox_genre;
     
     private boolean edit;
@@ -63,37 +59,26 @@ public class MovieSceneController implements Initializable {
     private CategoryModel categoryModel;
     private PrimaryController pCon;
     private MovieSceneController conMovie;
+    private MovieDAO md = new MovieDAO();
+    private int id = 2000;
     @FXML
-    private ChoiceBox<?> choiceBox_category;
+    private ChoiceBox<Category> choiceBox_category;
     @FXML
-    private Button btn_createVisible1;
+    private ComboBox<Integer> choiceBox_imdbrating;
     @FXML
-    private Button btn_deleteCategory;
-    @FXML
-    private TextField txt_createCategory;
-    @FXML
-    private Button btn_createCategory;
-
+    private ComboBox<Integer> choiceBox_myrating;
+    private LogicManager lm = new LogicManager();
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        
-    }
-    @FXML
-    private void handle_createVisible(ActionEvent event) {
-        txt_createGenre.setVisible(true);
-        btn_createGenre.setVisible(true);
+         ObservableList<Category> categorylist = FXCollections.observableArrayList(lm.getAllCategories());
+        choiceBox_category.setItems(categorylist);
+        choiceBox_myrating.setItems(FXCollections.observableArrayList( 1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
+        choiceBox_imdbrating.setItems(FXCollections.observableArrayList( 1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
     }
 
-    @FXML
-    private void handle_deleteGenre(ActionEvent event) {
-        String name = (String) choiceBox_genre.getSelectionModel().getSelectedItem();
-        genreModel.deleteGenre(name);
-        choiceBox_genre.getItems().remove(name);
-    }
 
     @FXML
     private void handle_openFileChooser(ActionEvent event) {
@@ -127,19 +112,8 @@ public class MovieSceneController implements Initializable {
     
     @FXML
     private void handle_saveMovie(ActionEvent event) {
-        if (!edit) {
-            movieModel.createMovie(txtField_title.getText().trim(),
-             movieModel.format_To_Sec(txtField_time.getText()),
-             choiceBox_genre.getSelectionModel().getSelectedItem(),
-              txtField_filePath.getText());
-        } else {
-            movieModel.updateMovie(movieToEdit,
-            txtField_title.getText().trim(),
-            choiceBox_genre.getSelectionModel().getSelectedItem(),
-            movieModel.format_To_Sec(txtField_time.getText()),
-            txtField_filePath.getText());
-        }
-
+        md.createMovie(id,txtField_title.getText(),choiceBox_myrating.getValue(),choiceBox_imdbrating.getValue(),"never",txtField_filePath.getText(),choiceBox_category.getSelectionModel().getSelectedItem().getCatname(),txtField_title.getText());
+        id++;
 
 
         Stage stage;
@@ -164,42 +138,18 @@ public class MovieSceneController implements Initializable {
         stage.close();
     }
     
-    @FXML
-    private void handle_createGenre(ActionEvent event) {
-
-        String name = txt_createGenre.getText().trim();
-        genreModel.createGenre(name);
-        choiceBox_genre.getItems().add(name);
-        txt_createGenre.setVisible(false); //makes the button invisible.
-        btn_createGenre.setVisible(false); //makes the button invisible.
-    }
     
-        
+   
+     
     public void setContr(PrimaryController pCon) {
         this.pCon = pCon;
     }
 
-    @FXML
-    private void handle_createVisible1(ActionEvent event) {
-        txt_createCategory.setVisible(true);
-        btn_createCategory.setVisible(true);
-    }
+    
+   
 
-    @FXML
-    private void handle_deleteCategory(ActionEvent event) {
-        String name = (String) choiceBox_category.getSelectionModel().getSelectedItem();
-        categoryModel.deleteCategory(name);
-        choiceBox_category.getItems().remove(name);
-    }
 
-    @FXML
-    private void handle_createCategory(ActionEvent event) {
-        String name = txt_createCategory.getText().trim();
-        categoryModel.createCategory(name);
-        //choiceBox_category.getItems().add(name);
-        txt_createCategory.setVisible(false); //makes the button invisible.
-        btn_createCategory.setVisible(false); //makes the button invisible.
-    }
+   
 
 
 }
