@@ -151,10 +151,14 @@ public class MovieDAO {
             
         } catch (SQLServerException ex) {
             Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("Unable to delete Movie.");
+           Alert alert = new Alert(AlertType.WARNING, "Unable to delete Movie.", ButtonType.OK);
+            alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+            alert.show();
         } catch (SQLException ex) {
             Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("Unable to delete Movie.");
+            Alert alert = new Alert(AlertType.WARNING, "Unable to delete Movie.", ButtonType.OK);
+            alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+            alert.show();
         }
     }
 
