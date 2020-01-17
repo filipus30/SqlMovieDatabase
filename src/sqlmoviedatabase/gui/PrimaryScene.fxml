@@ -36,7 +36,7 @@
                   </TableView>
 
                   <TextField fx:id="searchbar" layoutX="212.0" layoutY="29.0" onAction="#handle_textsearch" onKeyTyped="#handle_textsearch" prefHeight="31.0" prefWidth="715.0" promptText="Search..." />
-                  <ComboBox fx:id="filter" layoutX="1018.0" layoutY="29.0" onAction="#handle_filter" prefWidth="150.0" promptText="Filter by rating" styleClass="lblFlow" stylesheets="@css/style.css" />
+                  <ComboBox fx:id="filter" layoutX="1043.0" layoutY="29.0" onAction="#handle_filter" prefHeight="26.0" prefWidth="149.0" promptText="Filter by rating" styleClass="lblFlow" stylesheets="@css/style.css" />
 
                   <Pane layoutX="210.0" layoutY="660.0" prefHeight="45.0" prefWidth="252.0" style="-fx-background-color: #00FFFF#00FFFF;" stylesheets="@css/style.css">
 
@@ -95,7 +95,7 @@
                         </Button>
                      </children>
                   </Pane>
-                  <Button fx:id="button_search" layoutX="940.0" layoutY="32.0" mnemonicParsing="false" onAction="#handle_search" prefHeight="26.0" prefWidth="55.0" text="Search!" />
+                  <Button fx:id="button_search" layoutX="932.0" layoutY="32.0" mnemonicParsing="false" onAction="#handle_search" prefHeight="26.0" prefWidth="101.0" text="Filter &amp; Search" />
                   <Button fx:id="ratebutton" layoutX="471.0" layoutY="661.0" mnemonicParsing="false" onAction="#rate" prefHeight="43.0" prefWidth="140.0" text="RATE !">
                      <font>
                         <Font size="18.0" />

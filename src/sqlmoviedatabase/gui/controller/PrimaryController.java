@@ -251,9 +251,9 @@ public class PrimaryController implements Initializable {
     private void handle_search(ActionEvent event) {
        ObservableList<Movie> movielist = FXCollections.observableArrayList(lm.getAllMovies());
         if (searching==false)
-        { button_search.setText("reset");
+        { button_search.setText("Reset");
         if(textselected == false && catselected ==false && ratselected == false)
-                System.out.println("bad");
+               
         tbv_Library.setItems(movielist);
        if(catselected)
        model.setMovieList(lm.searchcat(lm.getAllMovies(),categories.getSelectionModel().getSelectedItem().getCatname()));
@@ -274,7 +274,7 @@ public class PrimaryController implements Initializable {
             textselected =false;
             catselected = false;
             ratselected = false;
-            button_search.setText("Search!");
+            button_search.setText("Filter & Search");
             searching = false;
             model.setMovieList(lm.getAllMovies());
             searchbar.setDisable(false);
