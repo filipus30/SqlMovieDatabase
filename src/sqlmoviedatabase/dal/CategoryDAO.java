@@ -16,6 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.layout.Region;
 import sqlmoviedatabase.be.Category;
 import sqlmoviedatabase.be.Movie;
 
@@ -89,8 +92,14 @@ public class CategoryDAO {
             pstmt.executeUpdate();
         } catch (SQLServerException ex) {
             Logger.getLogger(GenreDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Error Couldn't Delete Category Check You Sql Connection And Try Again", ButtonType.OK);
+            alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+            alert.show();
         } catch (SQLException ex) {
             Logger.getLogger(GenreDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Error Couldn't Delete Category", ButtonType.OK);
+            alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+            alert.show();
         }
     }
 
@@ -108,6 +117,7 @@ public class CategoryDAO {
 
         } catch (SQLServerException ex) {
             Logger.getLogger(GenreDAO.class.getName()).log(Level.SEVERE, null, ex);
+            
         } catch (SQLException ex) {
             Logger.getLogger(GenreDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
