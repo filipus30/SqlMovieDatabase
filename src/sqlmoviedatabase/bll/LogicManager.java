@@ -130,7 +130,11 @@ public class LogicManager implements LogicFacade{
         return timeConverter.format_To_Sec(formatString);
     }
 
-   
+       public int getNewMovId(){
+        int newMovId = md.getLastMovId();
+        return newMovId +1;
+    }
+
   
     @Override
     public List<Category> getAllCategories() {

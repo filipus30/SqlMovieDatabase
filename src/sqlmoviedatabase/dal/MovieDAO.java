@@ -180,29 +180,53 @@ public class MovieDAO {
        
     }
     
-    private void createCatMovRelationship(int movid, String categories){
-        String[] cat = categories.split(",");
-        try(Connection con = ds.getConnection()){    
-            for (int i=0; i<cat.length; i++) {
-                String catstmt = "SELECT * FROM Categories WHERE CatName=?;";
-                PreparedStatement catSelstmt = con.prepareStatement(catstmt,Statement.RETURN_GENERATED_KEYS);
-                catSelstmt.setString(1, "" + cat[i] + "");
-                catSelstmt.execute();
-                ResultSet crs = catSelstmt.getGeneratedKeys();//fetch the result of the SQL statement and store it.
-                while(crs.next()){ //While there is something listed...
-                    int categoryID = crs.getInt("CatId");
-                    String enterCat ="INSERT INTO CatMov (MovId, CatId) VALUES (?, ?)";
-                    PreparedStatement catSetstmt = con.prepareStatement(enterCat);
-                    catSetstmt.setInt(1, movid);
-                    catSetstmt.setInt(2, categoryID);
-                    catSetstmt.execute();
-                }
+   private void createCatMovRelationship(int movid, String categories){
+        try(Connection con = ds.getConnection()){   
+            if(categories.contains(",")){
+                String[] cat = categories.split(",");
+                for (int i=0; i<cat.length; i++) {
+                    System.out.println("In for loop");
+                    String catstmt = "INSERT INTO CatMov (MovId, CatId) VALUES (?, (SELECT CatId FROM Categories WHERE CatName=?));";
+                    PreparedStatement catSelstmt = con.prepareStatement(catstmt);
+                    catSelstmt.setInt(1, movid);
+                    catSelstmt.setString(2, "" + cat[i] + "");
+                    catSelstmt.execute();
+                }        
             }
+            
+            else{
+                String catstmt = "INSERT INTO CatMov (MovId, CatId) VALUES (?, (SELECT CatId FROM Categories WHERE CatName=?));";
+                PreparedStatement catSelstmt = con.prepareStatement(catstmt);
+                catSelstmt.setInt(1, movid);
+                catSelstmt.setString(2, "" + categories + "");
+                catSelstmt.execute();
+            }
+        
+
         } catch (SQLServerException ex) {
             Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
+        public int getLastMovId(){
+        int lastmovid = 0;
+        try(Connection con = ds.getConnection()){
+            String getmovid = "SELECT MovId From Movies ORDER BY MovId;";
+            Statement statement = con.createStatement();
+            ResultSet lmi = statement.executeQuery(getmovid);//fetch the result of the SQL statement and store it.
+            while(lmi.next())//While there is something listed...
+            {
+                lastmovid = lmi.getInt("MovId");
+            }
+        } catch (SQLServerException ex) { 
+            Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return lastmovid;
+    }
+
 }
 

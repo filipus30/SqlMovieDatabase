@@ -60,7 +60,7 @@ public class MovieSceneController implements Initializable {
     private PrimaryController pCon;
     private MovieSceneController conMovie;
     private MovieDAO md = new MovieDAO();
-    private int id = 2000;
+     
     @FXML
     private ChoiceBox<Category> choiceBox_category;
     @FXML
@@ -68,6 +68,7 @@ public class MovieSceneController implements Initializable {
     @FXML
     private ComboBox<Integer> choiceBox_myrating;
     private LogicManager lm = new LogicManager();
+    private int id = lm.getNewMovId();
     /**
      * Initializes the controller class.
      */
@@ -112,8 +113,9 @@ public class MovieSceneController implements Initializable {
     
     @FXML
     private void handle_saveMovie(ActionEvent event) {
-        md.createMovie(id,txtField_title.getText(),choiceBox_myrating.getValue(),choiceBox_imdbrating.getValue(),"never",txtField_filePath.getText(),choiceBox_category.getSelectionModel().getSelectedItem().getCatname(),txtField_title.getText());
-        id++;
+      
+      //  md.createMovie(id,txtField_title.getText(),choiceBox_myrating.getValue(),choiceBox_imdbrating.getValue(),"never",txtField_filePath.getText(),choiceBox_category.getSelectionModel().getSelectedItem().getCatname(),txtField_title.getText());
+        md.createMovie(id,txtField_title.getText(),choiceBox_myrating.getValue(),choiceBox_imdbrating.getValue(),"never",txtField_filePath.getText(),choiceBox_category.getSelectionModel().getSelectedItem().getCatname(),txtField_time.getText());
 
 
         Stage stage;
