@@ -23,6 +23,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
+import javafx.scene.layout.Region;
 import sqlmoviedatabase.be.Movie;
 
 public class MovieDAO {
@@ -172,7 +176,13 @@ public class MovieDAO {
  
         }   catch (SQLServerException ex) {
             Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Alert alert = new Alert(AlertType.WARNING, "Error Couldn't Create New Movie", ButtonType.OK);
+            alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+            alert.show();
         } catch (SQLException ex) {
+            Alert alert = new Alert(AlertType.WARNING, "Error Couldn't Create New Movie Check You Sql Connection And Try Again", ButtonType.OK);
+            alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+            alert.show();
             Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         
@@ -222,6 +232,7 @@ public class MovieDAO {
             }
         } catch (SQLServerException ex) { 
             Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE, null, ex);
+            
         } catch (SQLException ex) {
             Logger.getLogger(MovieDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
